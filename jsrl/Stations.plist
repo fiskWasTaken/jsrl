@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>Name</key>
+		<string>Classic</string>
+		<key>Source</key>
+		<string></string>
+		<key>Icon</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>Name</key>
+		<string>Future</string>
+		<key>Source</key>
+		<string>audioplayer/audio/~list.js</string>
+		<key>Icon</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>Name</key>
+		<string>Poison Jam</string>
+		<key>Source</key>
+		<string>audioplayer/audio/poisonjam/~list.js</string>
+		<key>Icon</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>Name</key>
+		<string>Noise Tanks</string>
+		<key>Source</key>
+		<string>audioplayer/audio/noisetanks/~list.js</string>
+		<key>Icon</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>Name</key>
+		<string>Love Shockers</string>
+		<key>Source</key>
+		<string>audioplayer/audio/loveshockers/~list.js</string>
+		<key>Icon</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>Name</key>
+		<string>Rapid 99</string>
+		<key>Source</key>
+		<string>audioplayer/audio/rapid99/~list.js</string>
+		<key>Icon</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>Name</key>
+		<string>Immortals</string>
+		<key>Source</key>
+		<string>audioplayer/audio/immortals/~list.js</string>
+		<key>Icon</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>Name</key>
+		<string>Golden Rhinos</string>
+		<key>Source</key>
+		<string>audioplayer/audio/goldenrhinos/~list.js</string>
+		<key>Icon</key>
+		<string></string>
+	</dict>
+</array>
+</plist>
