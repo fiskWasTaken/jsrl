@@ -8,13 +8,8 @@
 
 import Foundation
 
-class Requests {
+class Requests : Resource {
     var endpoint: String = "/messages"
-    var context: Context
-    
-    init(_ ctx: Context) {
-        self.context = ctx
-    }
 }
 
 class RequestMessage {
@@ -31,7 +26,7 @@ class RequestMessage {
     var message: String = ""
     
     /**
-     Who is responsible for this message
+     Who is responsible for this message.
      */
     var avatar: String = ""
 }

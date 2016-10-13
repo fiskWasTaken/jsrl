@@ -8,29 +8,22 @@
 
 import Foundation
 
-class Chat {
+class Chat : Resource {
     var recvEndpoint = "/chat/messages.xml"
     var sendEndpoint = "/chat/save.php"
-    var context: Context
     
     var messageReceivedHandlers: [()->()] = []
     var messages: [ChatMessage] = []
     
-    init(_ ctx: Context) {
-        self.context = ctx
-    }
-    
     func fetch(callback: (_: String, _: String)->()) {
-        let session = URLSession.shared
         let url = URL(string: context.root + recvEndpoint)
         
         var request = URLRequest(url: url!)
         request.httpMethod = "GET"
         request.cachePolicy = NSURLRequest.CachePolicy.reloadIgnoringCacheData
         
-        let task = session.dataTask(with: request as URLRequest) {
-            (
-            data, response, error) in
+        let task = URLSession.shared.dataTask(with: request as URLRequest) {
+            (data, response, error) in
             
             guard let data = data, let _:URLResponse = response  , error == nil else {
                 print("error")

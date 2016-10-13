@@ -16,7 +16,6 @@
 		C18119C81DAC58F000068EC0 /* Counters.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18119C71DAC58F000068EC0 /* Counters.swift */; };
 		C18119CB1DAD7AD800068EC0 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18119CA1DAD7AD800068EC0 /* Cache.swift */; };
 		C18119D11DAE83A800068EC0 /* Stations.plist in Resources */ = {isa = PBXBuildFile; fileRef = C18119D01DAE83A800068EC0 /* Stations.plist */; };
-		C18119D31DAE857800068EC0 /* Radio.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18119D21DAE857800068EC0 /* Radio.swift */; };
 		C1A09EE81DABD7DE00C10FE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A09EE71DABD7DE00C10FE1 /* AppDelegate.swift */; };
 		C1A09EEA1DABD7DE00C10FE1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A09EE91DABD7DE00C10FE1 /* ViewController.swift */; };
 		C1A09EED1DABD7DE00C10FE1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1A09EEB1DABD7DE00C10FE1 /* Main.storyboard */; };
@@ -24,6 +23,8 @@
 		C1A09EF21DABD7DE00C10FE1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1A09EF11DABD7DE00C10FE1 /* Assets.xcassets */; };
 		C1A09EF51DABD7DE00C10FE1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1A09EF31DABD7DE00C10FE1 /* LaunchScreen.storyboard */; };
 		C1A09F0B1DABD7DE00C10FE1 /* jsrlUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A09F0A1DABD7DE00C10FE1 /* jsrlUITests.swift */; };
+		C1F0C4631DAFBB1C00E6C992 /* Tracks.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F0C4621DAFBB1C00E6C992 /* Tracks.swift */; };
+		C1F0C4651DAFBB3D00E6C992 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F0C4641DAFBB3D00E6C992 /* Resource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,7 +54,6 @@
 		C18119C71DAC58F000068EC0 /* Counters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Counters.swift; sourceTree = "<group>"; };
 		C18119CA1DAD7AD800068EC0 /* Cache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
 		C18119D01DAE83A800068EC0 /* Stations.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Stations.plist; sourceTree = "<group>"; };
-		C18119D21DAE857800068EC0 /* Radio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Radio.swift; sourceTree = "<group>"; };
 		C1A09EE41DABD7DE00C10FE1 /* jsrl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = jsrl.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1A09EE71DABD7DE00C10FE1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C1A09EE91DABD7DE00C10FE1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -67,6 +67,8 @@
 		C1A09F061DABD7DE00C10FE1 /* jsrlUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = jsrlUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1A09F0A1DABD7DE00C10FE1 /* jsrlUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = jsrlUITests.swift; sourceTree = "<group>"; };
 		C1A09F0C1DABD7DE00C10FE1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C1F0C4621DAFBB1C00E6C992 /* Tracks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tracks.swift; sourceTree = "<group>"; };
+		C1F0C4641DAFBB3D00E6C992 /* Resource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,25 +96,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C1083C931DAE8EEB00394047 /* rest */ = {
+		C1083C931DAE8EEB00394047 /* api */ = {
 			isa = PBXGroup;
 			children = (
-				C18119C21DAC30C500068EC0 /* remote */,
+				C18119C21DAC30C500068EC0 /* resource */,
 				C1083C941DAE8EFA00394047 /* Context.swift */,
 			);
-			name = rest;
+			name = api;
 			sourceTree = "<group>";
 		};
-		C18119C21DAC30C500068EC0 /* remote */ = {
+		C18119C21DAC30C500068EC0 /* resource */ = {
 			isa = PBXGroup;
 			children = (
 				C18119C31DAC30EC00068EC0 /* Chat.swift */,
 				C18119C51DAC3FDB00068EC0 /* Requests.swift */,
 				C18119C71DAC58F000068EC0 /* Counters.swift */,
-				C18119D21DAE857800068EC0 /* Radio.swift */,
 				C1083C961DAE93DD00394047 /* TrackLists.swift */,
+				C1F0C4621DAFBB1C00E6C992 /* Tracks.swift */,
+				C1F0C4641DAFBB3D00E6C992 /* Resource.swift */,
 			);
-			name = remote;
+			name = resource;
 			sourceTree = "<group>";
 		};
 		C18119C91DAD7ACA00068EC0 /* cache */ = {
@@ -154,7 +157,7 @@
 		C1A09EE61DABD7DE00C10FE1 /* jsrl */ = {
 			isa = PBXGroup;
 			children = (
-				C1083C931DAE8EEB00394047 /* rest */,
+				C1083C931DAE8EEB00394047 /* api */,
 				C18119CF1DAE836000068EC0 /* assets */,
 				C18119C91DAD7ACA00068EC0 /* cache */,
 				C1A09EE71DABD7DE00C10FE1 /* AppDelegate.swift */,
@@ -323,12 +326,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				C18119CB1DAD7AD800068EC0 /* Cache.swift in Sources */,
+				C1F0C4631DAFBB1C00E6C992 /* Tracks.swift in Sources */,
 				C1A09EEA1DABD7DE00C10FE1 /* ViewController.swift in Sources */,
+				C1F0C4651DAFBB3D00E6C992 /* Resource.swift in Sources */,
 				C18119C41DAC30EC00068EC0 /* Chat.swift in Sources */,
 				C1A09EF01DABD7DE00C10FE1 /* jsrl.xcdatamodeld in Sources */,
 				C18119C61DAC3FDB00068EC0 /* Requests.swift in Sources */,
 				C1083C971DAE93DD00394047 /* TrackLists.swift in Sources */,
-				C18119D31DAE857800068EC0 /* Radio.swift in Sources */,
 				C1083C951DAE8EFA00394047 /* Context.swift in Sources */,
 				C18119C81DAC58F000068EC0 /* Counters.swift in Sources */,
 				C1A09EE81DABD7DE00C10FE1 /* AppDelegate.swift in Sources */,

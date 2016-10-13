@@ -22,6 +22,14 @@ class trackListTests: XCTestCase {
         super.tearDown()
     }
     
+    func testFilesArrayRemote() {
+        let trackLists = Context().getTrackLists()
+        
+        trackLists.parseUrl(source: "/audioplayer/audio/~list.js", callback: {(strings: [String]) -> () in
+            print(strings.count)
+        })
+    }
+    
     func testFilesListArrayParse() {
         let body = "filesListArray[filesListArray.length] = \"2 Mello - My Rhymes Are Nice\";\n" +
             "filesListArray[filesListArray.length] = \"2 Mello - Training Room\";\n" +

@@ -8,16 +8,16 @@
 
 import Foundation
 
-class TrackLists {
-    var context: Context
-    
-    init(_ ctx: Context) {
-        self.context = ctx
-    }
+class TrackLists : Resource {
     
     func parseUrl(source: String, callback: @escaping ([String])->()) {
-        let url = URL(string: source)
+        print(self.context.root + source)
+        
+        let url = URL(string: self.context.root + source)
         let task = URLSession.shared.dataTask(with: url!) { (data, response, error) in
+            print(error)
+            print(response)
+            
             if let data = data,
                 let html = String(data: data, encoding: String.Encoding.utf8) {
                 print(html)
@@ -30,7 +30,12 @@ class TrackLists {
     }
     
     /**
-     Parse a large multi-line script to extract an array of song names.
+     Parse a large multi-line script to extract an array of track names.
+     
+     - parameters:
+     	- body: A body of text (probably some JavaScript source from jetsetradio.live).
+     
+     - returns: An array of track names.
      */
     func parse(_ body: String) -> [String] {
         let pattern = ".* = \"(.*)\""

@@ -8,8 +8,7 @@
 
 import Foundation
 
-class Counters {
-    
+class Counters : Resource {
 }
 
 class CounterUser {
