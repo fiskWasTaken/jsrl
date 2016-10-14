@@ -9,7 +9,7 @@
 import Foundation
 
 class Context {
-    var root: String = "http://jetsetradio.live"
+    var root: String = "https://jetsetradio.live"
     
     /**
      Get a Chat instance bound to this context.

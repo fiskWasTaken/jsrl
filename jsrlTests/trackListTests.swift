@@ -24,9 +24,16 @@ class trackListTests: XCTestCase {
     
     func testFilesArrayRemote() {
         let trackLists = Context().getTrackLists()
+        let exp = expectation(description: "Fetch the source track list JS from JSRl")
         
         trackLists.parseUrl(source: "/audioplayer/audio/~list.js", callback: {(strings: [String]) -> () in
-            print(strings.count)
+            exp.fulfill()
+        })
+        
+        waitForExpectations(timeout: 5, handler: { error in
+            if let error = error {
+            	XCTFail("waitForExpectationsWithTimeout errored: \(error)")
+            }
         })
     }
     
@@ -49,8 +56,24 @@ class trackListTests: XCTestCase {
     
     func testTrackURLResolve() {
         let tracks = Context().getTracks()
-        let expected = "http://jetsetradio.live/audioplayer/audio/2 Mello - My Rhymes Are Nice.mp3"
+        let expected = "https://jetsetradio.live/audioplayer/audio/2%20Mello%20-%20My%20Rhymes%20Are%20Nice.mp3"
         
-        XCTAssertEqual(tracks.resolveUrl("2 Mello - My Rhymes Are Nice"), expected)
+        XCTAssertEqual(tracks.resolveUrl("2 Mello - My Rhymes Are Nice").absoluteString, expected)
+    }
+    
+    func testTrackFetch() {
+        let exp = expectation(description: "Fetch an MP3 from JSRl")
+        
+        let tracks = Context().getTracks()
+        
+        tracks.get("2 Mello - My Rhymes Are Nice", {
+            exp.fulfill()
+        })
+        
+        waitForExpectations(timeout: 20, handler: { error in
+            if let error = error {
+                XCTFail("waitForExpectationsWithTimeout errored: \(error)")
+            }
+        })
     }
 }

@@ -10,21 +10,20 @@ import Foundation
 
 class Tracks : Resource {
     /**
- 	 Get the absolute URL for a track name.
+ 	 Get the absolute URL for a track name with percent encoding.
      
      - parameters:
      	- name: The track name.
      
-     - returns: An absolute URL for the audio track as a string.
+     - returns: An URL object representing the resource location.
      */
-    func resolveUrl(_ name: String) -> String {
-        return "\(context.root)/audioplayer/audio/\(name).mp3"
+    func resolveUrl(_ name: String) -> URL {
+        let encName = name.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!
+        return URL(string: "\(context.root)/audioplayer/audio/\(encName).mp3")!
     }
     
-    func get(_ name: String, _ callback: ()->()) {
-        let url = URL(string: resolveUrl(name))
-        
-        var request = URLRequest(url: url!)
+    func get(_ name: String, _ callback: @escaping ()->()) {
+        var request = URLRequest(url: resolveUrl(name))
         request.httpMethod = "GET"
         request.cachePolicy = NSURLRequest.CachePolicy.reloadIgnoringCacheData
         
@@ -38,6 +37,8 @@ class Tracks : Resource {
             
             let dataString =  String(data: data, encoding: String.Encoding.utf8)
             print(dataString)
+            
+            callback()
         }
         
         task.resume()

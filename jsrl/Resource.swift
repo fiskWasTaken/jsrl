@@ -8,6 +8,9 @@
 
 import Foundation
 
+/**
+ Abstract API Reesource implementation. 
+ */
 class Resource {
     var context: Context
     
