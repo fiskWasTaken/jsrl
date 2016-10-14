@@ -2,25 +2,12 @@
 
 import UIKit
 
+let form: [String: Any] = [
+    "chatmessage": "fuckoff",
+    "chatpassword": false,
+    "username": "cat"
+]
 
-let source = "http://jetsetradio.live/chat/messages.xml"
+let whatever = form.map({"\($0)=\($1)"}).joined(separator: "&")
 
-var request = URLRequest(url: URL(string: source)!)
-request.httpMethod = "GET"
-request.cachePolicy = NSURLRequest.CachePolicy.reloadIgnoringCacheData
-
-let task = URLSession.shared.dataTask(with: request as URLRequest) {
-    (
-    data, response, error) in
-    
-    guard let data = data, let _:URLResponse = response  , error == nil else {
-        print("error")
-        return
-    }
-    
-    let dataString =  String(data: data, encoding: String.Encoding.utf8)
-    print(dataString)
-    
-}
-
-task.resume()
+whatever

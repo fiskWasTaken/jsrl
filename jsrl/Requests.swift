@@ -9,7 +9,7 @@
 import Foundation
 
 class Requests : Resource {
-    var endpoint: String = "/messages"
+    var endpoint: String = "/messages/messages.xml"
 }
 
 class RequestMessage {

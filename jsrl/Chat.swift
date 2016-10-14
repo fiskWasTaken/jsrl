@@ -15,7 +15,7 @@ class Chat : Resource {
     var messageReceivedHandlers: [()->()] = []
     var messages: [ChatMessage] = []
     
-    func fetch(callback: (_: String, _: String)->()) {
+    func fetch(callback: @escaping (_ err: String, _ body: String)->()) {
         let url = URL(string: context.root + recvEndpoint)
         
         var request = URLRequest(url: url!)
@@ -33,19 +33,43 @@ class Chat : Resource {
             let dataString =  String(data: data, encoding: String.Encoding.utf8)
             print(dataString)
             
+            callback("", dataString!)
         }
         
         task.resume()
     }
     
     func send(msg: ChatMessage) {
-        let form: [String: Any] = [
+        let url = URL(string: context.root + sendEndpoint)
+        
+        let form: [String: String] = [
             "chatmessage": msg.message,
-            "chatpassword": msg.password,
+            "chatpassword": msg.password ? "true" : "false",
             "username": msg.username
         ]
         
+        let formData = form.map({"\($0)=\($1.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed))"}).joined(separator: "&")
         
+        var request = URLRequest(url: url!)
+        request.httpMethod = "GET"
+        request.cachePolicy = NSURLRequest.CachePolicy.reloadIgnoringCacheData
+        request.httpBody = formData.data(using: String.Encoding.utf8)
+        
+        let task = URLSession.shared.dataTask(with: request as URLRequest) {
+            (data, response, error) in
+            
+            guard let data = data, let _:URLResponse = response  , error == nil else {
+                print("error")
+                return
+            }
+            
+            let dataString =  String(data: data, encoding: String.Encoding.utf8)
+            print(dataString)
+            
+//            callback("", dataString!)
+        }
+        
+        task.resume()
     }
     
     func onMessageReceived(handler: @escaping ()->()) {

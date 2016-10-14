@@ -11,17 +11,12 @@ import Foundation
 class TrackLists : Resource {
     
     func parseUrl(source: String, callback: @escaping ([String])->()) {
-        print(self.context.root + source)
-        
         let url = URL(string: self.context.root + source)
         let task = URLSession.shared.dataTask(with: url!) { (data, response, error) in
             print(error)
-            print(response)
             
             if let data = data,
                 let html = String(data: data, encoding: String.Encoding.utf8) {
-                print(html)
-                
                 callback(self.parse(html))
             }
         }
