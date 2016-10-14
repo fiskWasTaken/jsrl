@@ -9,12 +9,20 @@
 import Foundation
 
 class Tracks : Resource {
-    func get(_ name: String, _ callback: ()->()) {
-        getFile(name + ".mp3", callback)
+    /**
+ 	 Get the absolute URL for a track name.
+     
+     - parameters:
+     	- name: The track name.
+     
+     - returns: An absolute URL for the audio track as a string.
+     */
+    func resolveUrl(_ name: String) -> String {
+        return "\(context.root)/audioplayer/audio/\(name).mp3"
     }
     
-    func getFile(_ name: String, _ callback: ()->()) {
-        let url = URL(string: context.root + name)
+    func get(_ name: String, _ callback: ()->()) {
+        let url = URL(string: resolveUrl(name))
         
         var request = URLRequest(url: url!)
         request.httpMethod = "GET"
@@ -33,5 +41,6 @@ class Tracks : Resource {
         }
         
         task.resume()
+
     }
 }

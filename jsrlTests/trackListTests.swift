@@ -46,4 +46,11 @@ class trackListTests: XCTestCase {
         XCTAssertEqual(result[2], "2 Mello - Use Your Mind")
         XCTAssertEqual(result[3], "2Pac Dr Dre & Roger Troutman - California Love (Remix by FSG)")
     }
+    
+    func testTrackURLResolve() {
+        let tracks = Context().getTracks()
+        let expected = "http://jetsetradio.live/audioplayer/audio/2 Mello - My Rhymes Are Nice.mp3"
+        
+        XCTAssertEqual(tracks.resolveUrl("2 Mello - My Rhymes Are Nice"), expected)
+    }
 }
