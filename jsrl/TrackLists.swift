@@ -9,15 +9,24 @@
 import Foundation
 
 class TrackLists : Resource {
-    
-    func parseUrl(source: String, callback: @escaping ([String])->()) {
+    /**
+     Parse a script at an URI and callback with an array of track names.
+     
+     - parameters:
+     	- source: The source URI (is appended to the context root).
+     	- callback: A callback returning an Error object in the first parameter
+                    (if something happened) and an array of track names.
+     */
+    func parseUrl(source: String, callback: @escaping (Error?, [String])->()) {
         let url = URL(string: self.context.root + source)
         let task = URLSession.shared.dataTask(with: url!) { (data, response, error) in
-            print(error)
+            if (error != nil) {
+                callback(error, [])
+            }
             
             if let data = data,
                 let html = String(data: data, encoding: String.Encoding.utf8) {
-                callback(self.parse(html))
+                callback(nil, self.parse(html))
             }
         }
         
@@ -32,8 +41,12 @@ class TrackLists : Resource {
      
      - returns: An array of track names.
      */
-    func parse(_ body: String) -> [String] {
-        let pattern = ".* = \"(.*)\""
+    func parse(_ bodyRaw: String) -> [String] {
+        // Swift is buggy crap that does not understand carriage returns in regex so remove them first
+        // If we don't do this then indexing completely ignores the character and everything is off-by-one
+        var body = bodyRaw.replacingOccurrences(of: "\r", with: "")
+        
+        let pattern = ".+ = \"(.*)\""
         let regex = try! NSRegularExpression(pattern: pattern, options: [])
         let matches = regex.matches(in: body, options: [], range: NSRange(location: 0, length: body.characters.count))
         

@@ -22,26 +22,28 @@ class Tracks : Resource {
         return URL(string: "\(context.root)/audioplayer/audio/\(encName).mp3")!
     }
     
-    func get(_ name: String, _ callback: @escaping ()->()) {
+    /**
+     Get a track and return a callback.
+     
+     - parameters:
+     	- name: The track name.
+     	- callback: Callback with err and data.
+     */
+    func get(_ name: String, _ callback: @escaping (_ err: Error?, _ data: Data?)->()) {
         var request = URLRequest(url: resolveUrl(name))
         request.httpMethod = "GET"
-        request.cachePolicy = NSURLRequest.CachePolicy.reloadIgnoringCacheData
         
         let task = URLSession.shared.dataTask(with: request as URLRequest) {
             (data, response, error) in
             
             guard let data = data, let _:URLResponse = response  , error == nil else {
-                print("error")
+                callback(error, nil)
                 return
             }
             
-            let dataString =  String(data: data, encoding: String.Encoding.utf8)
-            print(dataString)
-            
-            callback()
+            callback(nil, data)
         }
         
         task.resume()
-
     }
 }

@@ -29,4 +29,36 @@ class RequestMessage {
      Who is responsible for this message.
      */
     var avatar: String = ""
+    
+    init(message: String, avatar: String) {
+        self.message = message
+        self.avatar = avatar
+    }
+    
+    /**
+     Extract the request type.
+     
+     - returns: A string (REQUEST, SCREEN, etc)
+ 	 */
+    func getType() -> String {
+        let regex = try! NSRegularExpression(pattern: "^(.*):", options: [])
+        let matches = regex.matches(in: message, options: [], range: NSRange(location: 0, length: message.characters.count))
+        
+        let range = matches[0].rangeAt(1)
+        let end = message.index(message.startIndex, offsetBy: range.length)
+        return message.substring(to: end)
+    }
+    
+    /**
+     Extract the request text.
+ 	 */
+    func getText() -> String {
+        let regex = try! NSRegularExpression(pattern: "^.*: (.*)$", options: [])
+        let matches = regex.matches(in: message, options: [], range: NSRange(location: 0, length: message.characters.count))
+        
+        let range = matches[0].rangeAt(1)
+        let start = message.index(message.startIndex, offsetBy: range.location)
+        let end = message.index(message.startIndex, offsetBy: range.location + range.length)
+        return message.substring(with: start ..< end)
+    }
 }

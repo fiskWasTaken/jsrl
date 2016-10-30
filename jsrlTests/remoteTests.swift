@@ -17,12 +17,16 @@ import XCTest
  Tests that load from a remote source
  */
 class remoteTests: XCTestCase {
-    let context: Context = Context()
+    let context = JSRL()
+    
+    func testChatTail() {
+        
+    }
     
     func testChat() {
         let exp = expectation(description: "Fetch the chat log")
         
-        context.getChat().fetch(callback: {_,_ in 
+        context.getChat().fetch({_, messages in
             exp.fulfill()
         })
         
@@ -36,7 +40,7 @@ class remoteTests: XCTestCase {
     func testTrackFetch() {
         let exp = expectation(description: "Fetch an MP3 from JSRl")
         
-        context.getTracks().get("2 Mello - My Rhymes Are Nice", {
+        context.getTracks().get("2 Mello - My Rhymes Are Nice", { err, data in
             exp.fulfill()
         })
         
@@ -50,7 +54,7 @@ class remoteTests: XCTestCase {
     func testFilesArrayRemote() {
         let exp = expectation(description: "Fetch the source track list JS from JSRl")
         
-        context.getTrackLists().parseUrl(source: "/audioplayer/audio/~list.js", callback: {(strings: [String]) -> () in
+        context.getTrackLists().parseUrl(source: "/audioplayer/audio/~list.js", callback: {(err, strings: [String]) -> () in
             print(strings[0])
             exp.fulfill()
         })

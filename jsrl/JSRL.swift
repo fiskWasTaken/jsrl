@@ -1,5 +1,5 @@
 //
-//  Context.swift
+//  JSRL.swift
 //  jsrl
 //
 //  Created by Fisk on 12/10/2016.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Context {
+class JSRL {
     var root: String = "https://jetsetradio.live"
     
     /**

@@ -12,46 +12,49 @@ class Chat : Resource {
     var recvEndpoint = "/chat/messages.xml"
     var sendEndpoint = "/chat/save.php"
     
-    var messageReceivedHandlers: [()->()] = []
-    var messages: [ChatMessage] = []
-    
-    func fetch(callback: @escaping (_ err: String, _ body: String)->()) {
+    /**
+     Fetch the latest chat messages in messages.xml.
+     
+     - properties:
+    	- callback: Callback returning an Error (nil if OK) and an array of
+     				ChatMessage responses.
+ 	 */
+    func fetch(_ callback: @escaping (_ err: Error?, _ body: [ChatMessage])->()) {
         let url = URL(string: context.root + recvEndpoint)
         
-        var request = URLRequest(url: url!)
-        request.httpMethod = "GET"
-        request.cachePolicy = NSURLRequest.CachePolicy.reloadIgnoringCacheData
-        
-        let task = URLSession.shared.dataTask(with: request as URLRequest) {
-            (data, response, error) in
+        DispatchQueue.main.async {
+            let parser = XMLParser(contentsOf: url!)!
             
-            guard let data = data, let _:URLResponse = response  , error == nil else {
-                print("error")
-                return
-            }
+            let chatParser = ChatParser()
+            parser.delegate = chatParser
+            parser.parse()
             
-            let dataString =  String(data: data, encoding: String.Encoding.utf8)
-            print(dataString)
+            print(chatParser.messages.count)
             
-            callback("", dataString!)
+            callback(nil, chatParser.messages)
         }
-        
-        task.resume()
     }
     
-    func send(msg: ChatMessage) {
+    /**
+     Post a message to the chat.
+     
+     - properties:
+     	- message: A ChatMessage.
+    	- callback: Callback returning an Error (nil if OK) and an URLResponse.
+     */
+    func send(_ message: ChatMessage, _ callback: @escaping (_ err: Error, _ response: URLResponse)->()) {
         let url = URL(string: context.root + sendEndpoint)
         
         let form: [String: String] = [
-            "chatmessage": msg.message,
-            "chatpassword": msg.password ? "true" : "false",
-            "username": msg.username
+            "chatmessage": message.text,
+            "chatpassword": message.password ? "true" : "false",
+            "username": message.username
         ]
         
         let formData = form.map({"\($0)=\($1.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed))"}).joined(separator: "&")
         
         var request = URLRequest(url: url!)
-        request.httpMethod = "GET"
+        request.httpMethod = "POST"
         request.cachePolicy = NSURLRequest.CachePolicy.reloadIgnoringCacheData
         request.httpBody = formData.data(using: String.Encoding.utf8)
         
@@ -64,27 +67,54 @@ class Chat : Resource {
             }
             
             let dataString =  String(data: data, encoding: String.Encoding.utf8)
-            print(dataString)
+            print(dataString ?? "")
             
 //            callback("", dataString!)
         }
         
         task.resume()
     }
+}
+
+/**
+ A class that wraps the chat API and creates a tailing event-based handler, emulating a stream of messages.
+ Don't forget to clear clearHandlers() when done.
+ */
+class ChatTail {
+    let chat: Chat
+    var previousMessages: [ChatMessage] = []
+    var handlers = [(ChatMessage) -> ()]()
     
-    func onMessageReceived(handler: @escaping ()->()) {
-        self.messageReceivedHandlers.append(handler)
+    init (_ chat: Chat) {
+        self.chat = chat
+    }
+    
+    func invokeFetch() {
+        self.chat.fetch({(err, newMessages: [ChatMessage]) in
+            // create a union between old and new messages
+            // todo
+            
+            self.previousMessages = newMessages
+        })
+    }
+    
+    func onMessageReceived(callback: @escaping (ChatMessage) -> ()) {
+        self.handlers.append(callback)
+    }
+    
+    func clearHandlers() {
+        self.handlers.removeAll()
     }
 }
 
 /**
  An entity representing a single message digest.
  */
-class ChatMessage {
+class ChatMessage: CustomStringConvertible {
     /**
      Message text.
      */
-    var message: String = ""
+    var text: String = ""
     
     /**
      Usernames. May contain HTML
@@ -109,7 +139,11 @@ class ChatMessage {
     /**
      Return a unique message hash
  	*/
-    func hash() -> String {
-        return (message + username)
+    var hash: String {
+        return (text + username)
+    }
+    
+    var description: String {
+        return "[ChatMessage] \(username): \(text)"
     }
 }

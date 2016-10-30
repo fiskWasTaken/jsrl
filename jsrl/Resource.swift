@@ -12,9 +12,9 @@ import Foundation
  Abstract API Reesource implementation. 
  */
 class Resource {
-    var context: Context
+    var context: JSRL
     
-    init(_ context: Context) {
+    init(_ context: JSRL) {
         self.context = context
     }
 }
