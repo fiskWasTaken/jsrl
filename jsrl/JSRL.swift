@@ -40,9 +40,9 @@ class JSRL {
     }
     
     /**
-     Get a Tracks instance bound to this context.
+     Get a Media instance bound to this context.
      */
-    func getTracks() -> Tracks {
-        return Tracks(self)
+    func getMedia() -> Media {
+        return Media(self)
     }
 }

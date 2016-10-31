@@ -74,7 +74,7 @@ class helperTests: XCTestCase {
         let source = "2 Mello - My Rhymes Are Nice"
         let expected = "https://jetsetradio.live/audioplayer/audio/2%20Mello%20-%20My%20Rhymes%20Are%20Nice.mp3"
         
-        XCTAssertEqual(context.getTracks().resolveUrl(source).absoluteString, expected)
+        XCTAssertEqual(context.getMedia().resolveUrl(source).absoluteString, expected)
     }
     
     func testRequestMessage() {

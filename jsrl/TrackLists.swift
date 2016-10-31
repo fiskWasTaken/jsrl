@@ -24,8 +24,7 @@ class TrackLists : Resource {
                 callback(error, [])
             }
             
-            if let data = data,
-                let html = String(data: data, encoding: String.Encoding.utf8) {
+            if let data = data, let html = String(data: data, encoding: String.Encoding.utf8) {
                 callback(nil, self.parse(html))
             }
         }

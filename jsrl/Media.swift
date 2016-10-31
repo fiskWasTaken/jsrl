@@ -1,5 +1,5 @@
 //
-//  Tracks.swift
+//  Media.swift
 //  jsrl
 //
 //  Created by Fisk on 13/10/2016.
@@ -8,9 +8,9 @@
 
 import Foundation
 
-class Tracks : Resource {
+class Media : Resource {
     /**
- 	 Get the absolute URL for a track name with percent encoding.
+ 	 Get the absolute URL for some media with percent encoding.
      
      - parameters:
      	- name: The track name.
@@ -29,19 +29,18 @@ class Tracks : Resource {
      	- name: The track name.
      	- callback: Callback with err and data.
      */
-    func get(_ name: String, _ callback: @escaping (_ err: Error?, _ data: Data?)->()) {
+    func getData(_ name: String, _ callback: @escaping (Error?, Data?)->()) {
         var request = URLRequest(url: resolveUrl(name))
         request.httpMethod = "GET"
         
-        let task = URLSession.shared.dataTask(with: request as URLRequest) {
-            (data, response, error) in
-            
-            guard let data = data, let _:URLResponse = response  , error == nil else {
+        let task = URLSession.shared.dataTask(with: request as URLRequest) { (data, response, error) in
+            if (error != nil) {
                 callback(error, nil)
-                return
             }
             
-            callback(nil, data)
+            if let data = data {
+                callback(nil, data)
+            }
         }
         
         task.resume()

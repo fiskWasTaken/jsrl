@@ -40,7 +40,7 @@ class remoteTests: XCTestCase {
     func testTrackFetch() {
         let exp = expectation(description: "Fetch an MP3 from JSRl")
         
-        context.getTracks().get("2 Mello - My Rhymes Are Nice", { err, data in
+        context.getMedia().getData("2 Mello - My Rhymes Are Nice", { err, data in
             exp.fulfill()
         })
         

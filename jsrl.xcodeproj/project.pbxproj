@@ -24,7 +24,8 @@
 		C1A09EF51DABD7DE00C10FE1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1A09EF31DABD7DE00C10FE1 /* LaunchScreen.storyboard */; };
 		C1A09F0B1DABD7DE00C10FE1 /* jsrlUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A09F0A1DABD7DE00C10FE1 /* jsrlUITests.swift */; };
 		C1DE09661DC60F1C00F070A6 /* ChatParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DE09651DC60F1C00F070A6 /* ChatParser.swift */; };
-		C1F0C4631DAFBB1C00E6C992 /* Tracks.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F0C4621DAFBB1C00E6C992 /* Tracks.swift */; };
+		C1DE096C1DC786D300F070A6 /* futureGraffitiSoulButton.png in Resources */ = {isa = PBXBuildFile; fileRef = C1DE096B1DC786D300F070A6 /* futureGraffitiSoulButton.png */; };
+		C1F0C4631DAFBB1C00E6C992 /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F0C4621DAFBB1C00E6C992 /* Media.swift */; };
 		C1F0C4651DAFBB3D00E6C992 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F0C4641DAFBB3D00E6C992 /* Resource.swift */; };
 /* End PBXBuildFile section */
 
@@ -69,7 +70,8 @@
 		C1A09F0A1DABD7DE00C10FE1 /* jsrlUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = jsrlUITests.swift; sourceTree = "<group>"; };
 		C1A09F0C1DABD7DE00C10FE1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C1DE09651DC60F1C00F070A6 /* ChatParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatParser.swift; sourceTree = "<group>"; };
-		C1F0C4621DAFBB1C00E6C992 /* Tracks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tracks.swift; sourceTree = "<group>"; };
+		C1DE096B1DC786D300F070A6 /* futureGraffitiSoulButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = futureGraffitiSoulButton.png; path = ../../../../Desktop/futureGraffitiSoulButton.png; sourceTree = "<group>"; };
+		C1F0C4621DAFBB1C00E6C992 /* Media.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
 		C1F0C4641DAFBB3D00E6C992 /* Resource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -115,7 +117,7 @@
 				C18119C51DAC3FDB00068EC0 /* Requests.swift */,
 				C18119C71DAC58F000068EC0 /* Counters.swift */,
 				C1083C961DAE93DD00394047 /* TrackLists.swift */,
-				C1F0C4621DAFBB1C00E6C992 /* Tracks.swift */,
+				C1F0C4621DAFBB1C00E6C992 /* Media.swift */,
 				C1F0C4641DAFBB3D00E6C992 /* Resource.swift */,
 			);
 			name = resource;
@@ -132,6 +134,7 @@
 		C18119CF1DAE836000068EC0 /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				C1DE096B1DC786D300F070A6 /* futureGraffitiSoulButton.png */,
 				C18119D01DAE83A800068EC0 /* Stations.plist */,
 			);
 			name = assets;
@@ -264,7 +267,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = fisk;
 				TargetAttributes = {
 					C1A09EE31DABD7DE00C10FE1 = {
@@ -312,6 +315,7 @@
 				C18119D11DAE83A800068EC0 /* Stations.plist in Resources */,
 				C1A09EF21DABD7DE00C10FE1 /* Assets.xcassets in Resources */,
 				C1A09EED1DABD7DE00C10FE1 /* Main.storyboard in Resources */,
+				C1DE096C1DC786D300F070A6 /* futureGraffitiSoulButton.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,7 +341,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C18119CB1DAD7AD800068EC0 /* Cache.swift in Sources */,
-				C1F0C4631DAFBB1C00E6C992 /* Tracks.swift in Sources */,
+				C1F0C4631DAFBB1C00E6C992 /* Media.swift in Sources */,
 				C1A09EEA1DABD7DE00C10FE1 /* ViewController.swift in Sources */,
 				C1F0C4651DAFBB3D00E6C992 /* Resource.swift in Sources */,
 				C18119C41DAC30EC00068EC0 /* Chat.swift in Sources */,
@@ -421,6 +425,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -471,6 +476,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;

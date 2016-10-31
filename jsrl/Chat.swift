@@ -92,8 +92,26 @@ class ChatTail {
     func invokeFetch() {
         self.chat.fetch({(err, newMessages: [ChatMessage]) in
             // create a union between old and new messages
-            // todo
             
+            // Fetch the last message
+            let last = self.previousMessages[self.previousMessages.count - 1]
+            var startIndex = 0
+            
+            for i in 0...newMessages.count {
+                if newMessages[i] == last {
+                    startIndex = i
+                    break
+                }
+            }
+            
+            // Send messages out to listeners
+            for i in startIndex...newMessages.count {
+                _ = self.handlers.map {
+                    $0(newMessages[i])
+                }
+            }
+            
+            // Replace the previousMessages list
             self.previousMessages = newMessages
         })
     }
@@ -137,10 +155,10 @@ class ChatMessage: CustomStringConvertible {
     var password: Bool = false
     
     /**
-     Return a unique message hash
+     ChatMessage equality comparator
  	*/
-    var hash: String {
-        return (text + username)
+    static func ==(left:ChatMessage, right: ChatMessage) -> Bool {
+        return left.username == right.username && left.text == right.text
     }
     
     var description: String {
