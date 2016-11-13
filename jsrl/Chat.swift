@@ -154,6 +154,16 @@ class ChatMessage: CustomStringConvertible {
      */
     var password: Bool = false
     
+    init() {
+        
+    }
+    
+    init(username: String, text: String, ip: String) {
+        self.username = username
+        self.text = text
+        self.ip = ip
+    }
+    
     /**
      ChatMessage equality comparator
  	*/

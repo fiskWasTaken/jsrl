@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11542" systemVersion="16B2555" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Library" representedClassName="Library" syncable="YES" codeGenerationType="class">
-        <relationship name="stations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Station" inverseName="library" inverseEntity="Station" syncable="YES"/>
-    </entity>
     <entity name="Station" representedClassName="Station" syncable="YES" codeGenerationType="class">
         <attribute name="icon" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="library" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Library" inverseName="stations" inverseEntity="Library" syncable="YES"/>
         <relationship name="tracks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Track" inverseName="station" inverseEntity="Track" syncable="YES"/>
     </entity>
     <entity name="Track" representedClassName="Track" syncable="YES" codeGenerationType="class">
@@ -14,8 +10,7 @@
         <relationship name="station" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Station" inverseName="tracks" inverseEntity="Station" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Library" positionX="-236" positionY="-9" width="128" height="58"/>
-        <element name="Station" positionX="-54" positionY="-9" width="128" height="103"/>
+        <element name="Station" positionX="-54" positionY="-9" width="128" height="90"/>
         <element name="Track" positionX="126" positionY="-9" width="128" height="73"/>
     </elements>
 </model>

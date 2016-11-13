@@ -8,7 +8,9 @@
 
 import Foundation
 
-
+/**
+ XML delegate for client chat parsing.
+ */
 class ChatParser : NSObject, XMLParserDelegate  {
     var messages: [ChatMessage] = []
     private var eName: String = String()
@@ -29,10 +31,7 @@ class ChatParser : NSObject, XMLParserDelegate  {
     
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         if elementName == "message" {
-            let message = ChatMessage()
-            message.username = username
-            message.text = text
-            message.ip = ip
+            let message = ChatMessage(username: username, text: text, ip: ip)
             messages.append(message)
         }
     }
