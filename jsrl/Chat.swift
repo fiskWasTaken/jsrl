@@ -77,55 +77,6 @@ class Chat : Resource {
 }
 
 /**
- A class that wraps the chat API and creates a tailing event-based handler, emulating a stream of messages.
- Don't forget to clear clearHandlers() when done.
- */
-class ChatTail {
-    let chat: Chat
-    var previousMessages: [ChatMessage] = []
-    var handlers = [(ChatMessage) -> ()]()
-    
-    init (_ chat: Chat) {
-        self.chat = chat
-    }
-    
-    func invokeFetch() {
-        self.chat.fetch({(err, newMessages: [ChatMessage]) in
-            // create a union between old and new messages
-            
-            // Fetch the last message
-            let last = self.previousMessages[self.previousMessages.count - 1]
-            var startIndex = 0
-            
-            for i in 0...newMessages.count {
-                if newMessages[i] == last {
-                    startIndex = i
-                    break
-                }
-            }
-            
-            // Send messages out to listeners
-            for i in startIndex...newMessages.count {
-                _ = self.handlers.map {
-                    $0(newMessages[i])
-                }
-            }
-            
-            // Replace the previousMessages list
-            self.previousMessages = newMessages
-        })
-    }
-    
-    func onMessageReceived(callback: @escaping (ChatMessage) -> ()) {
-        self.handlers.append(callback)
-    }
-    
-    func clearHandlers() {
-        self.handlers.removeAll()
-    }
-}
-
-/**
  An entity representing a single message digest.
  */
 class ChatMessage: CustomStringConvertible {
