@@ -20,82 +20,56 @@ class ViewController: UIViewController {
     @IBOutlet weak var songName: UILabel!
     var swipeGestureRecogniser = UISwipeGestureRecognizer()
     
-    var nowPlaying: Track?
-    var player = AVPlayer()
-    var library = [Track]()
-    var station = "Future"
     let jsrl = JSRL()
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
-    var mediaLibrary = MediaLibrary()
+    var library = Library()
+    var player = Player()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        player.jsrl = jsrl
         
         if mainView != nil {
-            if (library.count == 0) {
-                reloadLibrary()
+            if (library.list.count == 0) {
+                _ = library.loadFromCoreData()
             }
-            
-            swipeGestureRecogniser.addTarget(self, action: #selector(ViewController.onViewSwiped))
-            swipeGestureRecogniser.direction = UISwipeGestureRecognizerDirection.left
-            mainView.addGestureRecognizer(swipeGestureRecogniser)
-            mainView.isUserInteractionEnabled = true
         }
     }
     
     @IBAction func onSkipButtonTouch(_ sender: Any) {
-        setCurrentlyPlayingMedia(mediaLibrary.getRandomTrack())
+        onFinishedPlayingMedia()
     }
     
-    func reloadLibrary() {
-        let request: NSFetchRequest<Track> = Track.fetchRequest()
-        
-        do {
-            mediaPlayer.library = try context.fetch(request)
-        } catch {
-            print("Error with request: \(error)")
-        }
-    }
-    
-    func onViewSwiped(){
-        print("Swiped event")
-    }
-    
-    func getRandomTrack() -> Track {
-        return library[Int(arc4random_uniform(UInt32(library.count)))]
-    }
-    
+    /**
+     Set the currently playing media and play it.
+ 	 */
     func setCurrentlyPlayingMedia(_ track: Track) {
-        nowPlaying = track
-        
-        let urlAsset = AVURLAsset(url: jsrl.getMedia().resolveUrl(track.filename!))
-        let avItem = AVPlayerItem(asset: urlAsset)
+        player.setCurrent(track: track)
+        player.play()
         
         updateMetadata()
         
-        self.player = AVPlayer(playerItem: avItem)
-        self.player.play()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(onFinishedPlayingMedia), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: avItem)
+        NotificationCenter.default.addObserver(self, selector: #selector(onFinishedPlayingMedia), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: player.avItem)
     }
     
+    /**
+     Callback to play the next track when the current song is finished playing.
+     */
     func onFinishedPlayingMedia() {
-        setCurrentlyPlayingMedia(getRandomTrack())
+        setCurrentlyPlayingMedia(library.getRandom())
     }
     
+    /**
+     We could use the actual metadata but JSRL's MP3's are largely untagged :'(
+     Instead we split the filename as all songs are stored as Artist - Song Name.mp3
+ 	 */
     func updateMetadata() {
-        // we could use the actual metadata but JSRL's MP3's are largely untagged :'(
-        // instead we split the filename as this is what the Android app does anyway
-    
-        if (nowPlaying?.filename == nil) {
-            return
+        if let currentTrackFile = player.currentTrack?.filename {
+            let values = currentTrackFile.components(separatedBy: " - ")
+
+            artist.text = values[0]
+            songName.text = values[1]
         }
-        
-        let values = (nowPlaying?.filename)!.components(separatedBy: " - ")
-        
-        artist.text = values[0]
-        songName.text = values[1]
     }
 
     override func didReceiveMemoryWarning() {
@@ -118,58 +92,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func debugPopulateLibrary(_ sender: AnyObject) {
-        // Download
-        let jsrl = JSRL()
-        let tracklists = jsrl.getTrackLists()
-        
-        print("Loading library")
-        
-        var stationArray: NSArray?
-        if let path = Bundle.main.path(forResource: "Stations", ofType: "plist") {
-            stationArray = NSArray(contentsOfFile: path)
-        }
-        
-        if let stations = stationArray {
-            for station in stations {
-                if (((station as! NSDictionary).object(forKey: "Source") as! String) == "") {
-                    continue;
-                }
-                
-                print("Populating " + ((station as! NSDictionary).object(forKey: "Name") as! String))
-                
-                tracklists.parseUrl(source: ((station as! NSDictionary).object(forKey: "Source") as! String)) { (_, strings: [String]) in
-                    let trackList: [NSManagedObject] = strings.map {string in
-                        let entity = NSEntityDescription.entity(forEntityName: "Track", in: self.context)
-                        let track = NSManagedObject(entity: entity!, insertInto: self.context)
-                        track.setValue(string, forKey: "filename")
-                        track.setValue((station as! NSDictionary).object(forKey: "Name") as! String, forKey: "station")
-                        
-                        return track
-                    }
-                    
-                    print(trackList)
-                    
-                    do {
-                        try self.context.save()
-                    } catch let error as NSError  {
-                        print("Could not save \(error), \(error.userInfo)")
-                    }
-                }
-            }
-            
-            reloadLibrary()
-        }
-    }
-    
-    @IBAction func printLibrary(_ sender: Any) {
-        let request: NSFetchRequest<Track> = Track.fetchRequest()
-        
-        do {
-            let searchResults = try context.fetch(request)
-            print(searchResults)
-        } catch {
-            print("Error with request: \(error)")
-        }
+        library.populateFrom(jsrl: jsrl)
     }
     
     override var canBecomeFirstResponder : Bool {
@@ -184,17 +107,27 @@ class ViewController: UIViewController {
     
     override func remoteControlReceived(with event: UIEvent?) { // *
         let rc = event!.subtype
-//        let p = self.player.player! // todo
+        let p = player.player
         print("received remote control \(rc.rawValue)") // 101 = pause, 100 = play
-//        switch rc {
-//        case .remoteControlTogglePlayPause:
-//            if p.isPlaying { p.pause() } else { p.play() }
-//        case .remoteControlPlay:
-//            p.play()
-//        case .remoteControlPause:
-//            p.pause()
-//        default:break
-//        }
+        
+        switch rc {
+        case .remoteControlTogglePlayPause:
+            if ((p.rate != 0) && (p.error == nil)) {
+                // player is playing
+                p.pause()
+            } else {
+                p.play()
+            }
+        case .remoteControlPlay:
+            p.play()
+        case .remoteControlPause:
+            p.pause()
+        case .remoteControlNextTrack:
+            onFinishedPlayingMedia()
+        case .remoteControlPreviousTrack:
+            onFinishedPlayingMedia()
+        default:break
+        }
     }
     
     func updateChat() {

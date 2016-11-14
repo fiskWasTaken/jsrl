@@ -13,7 +13,8 @@
 		C117C8551DD94146004366BB /* optionsButton.png in Resources */ = {isa = PBXBuildFile; fileRef = C117C8541DD94146004366BB /* optionsButton.png */; };
 		C117C8571DD941E4004366BB /* chatButton.png in Resources */ = {isa = PBXBuildFile; fileRef = C117C8561DD941E4004366BB /* chatButton.png */; };
 		C117C8591DD94296004366BB /* nextTrackButton.png in Resources */ = {isa = PBXBuildFile; fileRef = C117C8581DD94296004366BB /* nextTrackButton.png */; };
-		C117C85C1DD9F3EA004366BB /* MediaLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = C117C85B1DD9F3EA004366BB /* MediaLibrary.swift */; };
+		C117C85C1DD9F3EA004366BB /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = C117C85B1DD9F3EA004366BB /* Library.swift */; };
+		C117C85E1DD9FAB6004366BB /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = C117C85D1DD9FAB6004366BB /* Player.swift */; };
 		C134D38E1DB1A0C100079CE0 /* helperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C134D38C1DB1A0C100079CE0 /* helperTests.swift */; };
 		C134D38F1DB1A0C100079CE0 /* remoteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C134D38D1DB1A0C100079CE0 /* remoteTests.swift */; };
 		C15971A91DD9185C004429BB /* graffitiSoulFuture.png in Resources */ = {isa = PBXBuildFile; fileRef = C15971A81DD9185C004429BB /* graffitiSoulFuture.png */; };
@@ -65,7 +66,8 @@
 		C117C8541DD94146004366BB /* optionsButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = optionsButton.png; sourceTree = "<group>"; };
 		C117C8561DD941E4004366BB /* chatButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chatButton.png; sourceTree = "<group>"; };
 		C117C8581DD94296004366BB /* nextTrackButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nextTrackButton.png; sourceTree = "<group>"; };
-		C117C85B1DD9F3EA004366BB /* MediaLibrary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaLibrary.swift; sourceTree = "<group>"; };
+		C117C85B1DD9F3EA004366BB /* Library.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Library.swift; sourceTree = "<group>"; };
+		C117C85D1DD9FAB6004366BB /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		C134D38C1DB1A0C100079CE0 /* helperTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = helperTests.swift; sourceTree = "<group>"; };
 		C134D38D1DB1A0C100079CE0 /* remoteTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = remoteTests.swift; sourceTree = "<group>"; };
 		C15971A81DD9185C004429BB /* graffitiSoulFuture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = graffitiSoulFuture.png; sourceTree = "<group>"; };
@@ -137,7 +139,8 @@
 		C117C85A1DD9F39B004366BB /* player */ = {
 			isa = PBXGroup;
 			children = (
-				C117C85B1DD9F3EA004366BB /* MediaLibrary.swift */,
+				C117C85B1DD9F3EA004366BB /* Library.swift */,
+				C117C85D1DD9FAB6004366BB /* Player.swift */,
 			);
 			name = player;
 			sourceTree = "<group>";
@@ -396,13 +399,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				C18119CB1DAD7AD800068EC0 /* Cache.swift in Sources */,
+				C117C85E1DD9FAB6004366BB /* Player.swift in Sources */,
 				C1F0C4631DAFBB1C00E6C992 /* Media.swift in Sources */,
 				C1F0C4651DAFBB3D00E6C992 /* Resource.swift in Sources */,
 				C18119C41DAC30EC00068EC0 /* Chat.swift in Sources */,
 				C1A09EF01DABD7DE00C10FE1 /* jsrl.xcdatamodeld in Sources */,
 				C18119C61DAC3FDB00068EC0 /* Requests.swift in Sources */,
 				C117C8531DD93FF4004366BB /* ViewController.swift in Sources */,
-				C117C85C1DD9F3EA004366BB /* MediaLibrary.swift in Sources */,
+				C117C85C1DD9F3EA004366BB /* Library.swift in Sources */,
 				C1083C971DAE93DD00394047 /* TrackLists.swift in Sources */,
 				C1DE09661DC60F1C00F070A6 /* ChatParser.swift in Sources */,
 				C1083C951DAE8EFA00394047 /* JSRL.swift in Sources */,
