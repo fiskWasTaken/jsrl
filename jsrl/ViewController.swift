@@ -27,6 +27,8 @@ class ViewController: UIViewController {
     let jsrl = JSRL()
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
+    var mediaLibrary = MediaLibrary()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -43,22 +45,17 @@ class ViewController: UIViewController {
     }
     
     @IBAction func onSkipButtonTouch(_ sender: Any) {
-        setCurrentlyPlayingMedia(getRandomTrack())
+        setCurrentlyPlayingMedia(mediaLibrary.getRandomTrack())
     }
     
     func reloadLibrary() {
         let request: NSFetchRequest<Track> = Track.fetchRequest()
         
         do {
-            self.library = try context.fetch(request)
-            print(self.library)
+            mediaPlayer.library = try context.fetch(request)
         } catch {
             print("Error with request: \(error)")
         }
-        
-        self.library = self.library.filter({ (track: Track) -> Bool in
-            return track.station == station
-        })
     }
     
     func onViewSwiped(){
