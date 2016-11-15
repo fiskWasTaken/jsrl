@@ -44,21 +44,21 @@ class Library {
         }
     }
     
-    func saveStation(_ station: NSDictionary, jsrl: JSRL) {
-        if ((station.object(forKey: "Source") as! String) == "") {
+    func saveStation(_ station: Station, jsrl: JSRL) {
+        if (station.source == "") {
             return
         }
         
         let tracklists = jsrl.getTrackLists()
         
-        print("Populating " + (station.object(forKey: "Name") as! String))
+        print("Populating \(station.name)")
         
-        tracklists.parseUrl(source: (station.object(forKey: "Source") as! String)) { (_, strings: [String]) in
+        tracklists.parseUrl(source: station.source) { (_, strings: [String]) in
             let trackList: [NSManagedObject] = strings.map {string in
                 let entity = NSEntityDescription.entity(forEntityName: "Track", in: self.context)
                 let track = NSManagedObject(entity: entity!, insertInto: self.context)
                 track.setValue(string, forKey: "filename")
-                track.setValue(station.object(forKey: "Name") as! String, forKey: "station")
+                track.setValue(station.name, forKey: "station")
                 
                 return track
             }
@@ -86,7 +86,7 @@ class Library {
         
         if let stations = stationArray {
             for station in stations {
-                saveStation(station as! NSDictionary, jsrl: jsrl)
+                saveStation(Station(station as! NSDictionary), jsrl: jsrl)
             }
             
             _ = loadFromCoreData()
