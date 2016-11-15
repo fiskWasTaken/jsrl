@@ -13,3 +13,23 @@ import Foundation
 class Cache {
     
 }
+
+class CacheItem {
+    let id: String
+    
+    init(id: String) {
+        self.id = id
+    }
+    
+    func put() {
+    
+    }
+    
+    func set() {
+    
+    }
+    
+    func exists() -> Bool {
+    	return true
+    }
+}

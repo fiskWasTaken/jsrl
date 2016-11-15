@@ -51,6 +51,8 @@ class RequestMessage {
     
     /**
      Extract the request text.
+     
+     - returns: A string containing the request text.
  	 */
     func getText() -> String {
         let regex = try! NSRegularExpression(pattern: "^.*: (.*)$", options: [])

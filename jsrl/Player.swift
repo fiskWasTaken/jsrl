@@ -30,6 +30,9 @@ class Player {
         initialiseMediaRemote()
     }
     
+    /**
+     Add media remote handlers.
+     */
     func initialiseMediaRemote() {
         let remote = MPRemoteCommandCenter.shared()
         
@@ -103,12 +106,15 @@ class Player {
     }
     
     /**
-     Is true if the AVPlayer is currently playing a track.
+     Returns true if AVPlayer is currently playing a track.
      */
     func isPlaying() -> Bool {
         return ((player.rate != 0) && (player.error == nil))
     }
     
+    /**
+     Next track.
+     */
     @objc func next() {
         if (playlist.list.count == 0) {
             return
@@ -118,6 +124,9 @@ class Player {
         play()
     }
     
+    /**
+     Previous track.
+     */
     @objc func previous() {
         if (playlist.list.count == 0) {
             return

@@ -10,8 +10,8 @@ import CoreData
 import UIKit
 
 /**
- MediaLibrary manages data stored between JSRl playlists and tracks stored in Core Data.
- MediaLibrary offers a simple API to get tracks by station.
+ Manages data stored between JSRl playlists and tracks stored in Core Data.
+ Offers a simple API to get tracks by station.
  */
 class Library {
     static let shared = Library()

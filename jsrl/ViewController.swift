@@ -46,11 +46,13 @@ class ViewController: UIViewController {
      Instead we split the filename as all songs are stored as Artist - Song Name.mp3
  	 */
     func updateMetadata() {
-        if let currentTrackFile = player.currentTrack?.filename {
-            let values = currentTrackFile.components(separatedBy: " - ")
-
-            artist.text = values[0]
-            songName.text = values[1]
+        if (artist != nil) {
+            if let currentTrackFile = player.currentTrack?.filename {
+                let values = currentTrackFile.components(separatedBy: " - ")
+                
+                artist.text = values[0]
+                songName.text = values[1]
+            }
         }
     }
 

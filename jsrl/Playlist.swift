@@ -9,45 +9,52 @@
 import Foundation
 
 /**
- Manages a sequential playlist.
+ Manages a sequential playlist that loops forever..
  */
 class Playlist {
     var list: [Track]
-    var position = -1
+    var cursor = -1
     
+    /**
+     Create a new playlist with an array of tracks as the source.
+     
+     - properties:
+       - tracks: A list of tracks.
+     */
     init(_ tracks: [Track]) {
         self.list = tracks
     }
     
     /**
-     Get the previous track in the sequence.
+     Get the previous track in the sequence. If the cursor is < 0, this
+     will just return the first track in the playlist.
      
      - returns: The previous track.
      */
     func getPrevious() -> Track {
-        if (position > 0) {
-            position -= 1
+        if (cursor > 0) {
+            cursor -= 1
         } else {
-            position = 0
+            cursor = 0
         }
         
-        let track = list[position % list.count]
-        
-        
+        let track = list[cursor % list.count]
         return track
     }
     
     /**
      Get the next track in the sequence.
+     
+     - returns: The next track.
      */
     func getNext() -> Track {
-        position += 1
-        let track = list[position % list.count]
+        cursor += 1
+        let track = list[cursor % list.count]
         return track
     }
     
     /**
-     Shuffles tracks in the playlist.
+     Shuffles tracks in this playlist and resets the cursor.
      */
     func shuffle() {
         if (list.count > 0) {
@@ -58,5 +65,7 @@ class Playlist {
                 list[rand] = tmp
             }
         }
+        
+        cursor = -1
     }
 }
