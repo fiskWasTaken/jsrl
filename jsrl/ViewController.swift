@@ -14,9 +14,10 @@ import CoreData
 var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>!
 
 class ViewController: UIViewController {
-    @IBOutlet weak var EmblemImage: UIButton!
+    @IBOutlet weak var emblemImage: UIButton!
     @IBOutlet weak var artist: UILabel!
     @IBOutlet weak var songName: UILabel!
+    @IBOutlet var uiView: UIView!
     
     let jsrl = JSRL()
     var library = Library.shared
@@ -30,7 +31,7 @@ class ViewController: UIViewController {
         
         player.jsrl = jsrl
         
-        let tracks = library.getTracksIn(station: "The GGs")
+        let tracks = library.getTracksIn(station: Player.shared.activeStation.name)
         player.playlist = Playlist(tracks)
         player.playlist.shuffle()
     }
@@ -38,6 +39,13 @@ class ViewController: UIViewController {
     @IBAction func onSkipButtonTouch(_ sender: Any) {
         player.next()
         updateMetadata()
+    }
+    
+    func updateStationDecor() {
+        let station = Player.shared.activeStation
+        
+        uiView.backgroundColor = UIColor(hexString: station.color)
+        emblemImage.setImage(station.getImageAsset(), for: UIControlState.normal)
     }
     
     func updateMetadata() {
@@ -57,10 +65,11 @@ class ViewController: UIViewController {
         return true
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        updateMetadata()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         player.onPlayStart = { self.updateMetadata() }
+        updateMetadata()
+        updateStationDecor()
     }
     
     @IBAction func debugPopulateLibrary(_ sender: AnyObject) {

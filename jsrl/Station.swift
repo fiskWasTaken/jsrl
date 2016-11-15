@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 /**
  Information for a Station.
@@ -23,9 +24,9 @@ class Station {
     let source: String
     
     /**
-     Icon resource
+     Image resource filename
      */
-    let icon: String
+    let image: String
     
     /**
      Accent color (hex value, #123456)
@@ -48,9 +49,41 @@ class Station {
     init(_ dictionary: NSDictionary) {
         name = dictionary.value(forKey: "Name") as! String
         source = dictionary.value(forKey: "Source") as! String
-        icon = dictionary.value(forKey: "Icon") as! String
+        image = dictionary.value(forKey: "Image") as! String
         color = dictionary.value(forKey: "Color") as! String
         genre = dictionary.value(forKey: "Genre") as! String
         root = dictionary.value(forKey: "Root") as? String
+    }
+    
+    func getImageAsset() -> UIImage? {
+        let path = Bundle.main.path(forResource: image, ofType: "png")
+        
+        if let path = path {
+            return UIImage(contentsOfFile: path)
+        }
+        
+        return nil
+    }
+}
+
+class Stations {
+    static let shared = Stations()
+    
+    let list: [Station]
+    
+    init() {
+        var stationArray: NSArray?
+        
+        if let path = Bundle.main.path(forResource: "Stations", ofType: "plist") {
+            stationArray = NSArray(contentsOfFile: path)
+        }
+        
+        if let stations = stationArray {
+            list = stations.map({
+                return Station($0 as! NSDictionary)
+            })
+        } else {
+            list = []
+        }
     }
 }

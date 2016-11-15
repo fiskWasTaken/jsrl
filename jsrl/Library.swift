@@ -79,18 +79,11 @@ class Library {
     func populateFrom(jsrl: JSRL) {
         print("Downloading library")
         
-        var stationArray: NSArray?
-        if let path = Bundle.main.path(forResource: "Stations", ofType: "plist") {
-            stationArray = NSArray(contentsOfFile: path)
+        _ = Stations.shared.list.map {
+            saveStation($0, jsrl: jsrl)
         }
         
-        if let stations = stationArray {
-            for station in stations {
-                saveStation(Station(station as! NSDictionary), jsrl: jsrl)
-            }
-            
-            _ = loadFromCoreData()
-        }
+        _ = loadFromCoreData()
     }
 }
 
@@ -107,8 +100,12 @@ class JSRLSongMetadata {
         if let currentTrackFile = track.filename {
             let values = currentTrackFile.components(separatedBy: " - ")
             
-            artist = values[0]
-            title = values[1]
+            if (values.count == 2) {
+                artist = values[0]
+                title = values[1]
+            } else {
+                title = values[0]
+            }
         }
     }
 }

@@ -20,6 +20,7 @@
 		C14ECFE41DDB2D5B00A69416 /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14ECFE31DDB2D5B00A69416 /* Playlist.swift */; };
 		C14ECFE61DDB455600A69416 /* StationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14ECFE51DDB455600A69416 /* StationViewController.swift */; };
 		C14ECFE81DDB457800A69416 /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14ECFE71DDB457800A69416 /* Station.swift */; };
+		C14ECFEA1DDB5BAF00A69416 /* StationViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14ECFE91DDB5BAF00A69416 /* StationViewCell.swift */; };
 		C15971A91DD9185C004429BB /* graffitiSoulFuture.png in Resources */ = {isa = PBXBuildFile; fileRef = C15971A81DD9185C004429BB /* graffitiSoulFuture.png */; };
 		C15971B21DD91AE3004429BB /* doomRiders.png in Resources */ = {isa = PBXBuildFile; fileRef = C15971AA1DD91AE3004429BB /* doomRiders.png */; };
 		C15971B31DD91AE3004429BB /* goldenRhinos.png in Resources */ = {isa = PBXBuildFile; fileRef = C15971AB1DD91AE3004429BB /* goldenRhinos.png */; };
@@ -76,6 +77,7 @@
 		C14ECFE31DDB2D5B00A69416 /* Playlist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
 		C14ECFE51DDB455600A69416 /* StationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationViewController.swift; sourceTree = "<group>"; };
 		C14ECFE71DDB457800A69416 /* Station.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Station.swift; sourceTree = "<group>"; };
+		C14ECFE91DDB5BAF00A69416 /* StationViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationViewCell.swift; sourceTree = "<group>"; };
 		C15971A81DD9185C004429BB /* graffitiSoulFuture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = graffitiSoulFuture.png; sourceTree = "<group>"; };
 		C15971AA1DD91AE3004429BB /* doomRiders.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = doomRiders.png; sourceTree = "<group>"; };
 		C15971AB1DD91AE3004429BB /* goldenRhinos.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = goldenRhinos.png; sourceTree = "<group>"; };
@@ -229,6 +231,7 @@
 				C1A09EF61DABD7DE00C10FE1 /* Info.plist */,
 				C1A09EEE1DABD7DE00C10FE1 /* jsrl.xcdatamodeld */,
 				C14ECFE51DDB455600A69416 /* StationViewController.swift */,
+				C14ECFE91DDB5BAF00A69416 /* StationViewCell.swift */,
 			);
 			path = jsrl;
 			sourceTree = "<group>";
@@ -422,6 +425,7 @@
 				C1083C951DAE8EFA00394047 /* JSRL.swift in Sources */,
 				C18119C81DAC58F000068EC0 /* Counters.swift in Sources */,
 				C1A09EE81DABD7DE00C10FE1 /* AppDelegate.swift in Sources */,
+				C14ECFEA1DDB5BAF00A69416 /* StationViewCell.swift in Sources */,
 				C14ECFE81DDB457800A69416 /* Station.swift in Sources */,
 				C14ECFE41DDB2D5B00A69416 /* Playlist.swift in Sources */,
 			);

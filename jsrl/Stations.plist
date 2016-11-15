@@ -4,23 +4,11 @@
 <array>
 	<dict>
 		<key>Name</key>
-		<string>Classic</string>
-		<key>Source</key>
-		<string></string>
-		<key>Icon</key>
-		<string>graffitiSoulClassic.png</string>
-		<key>Color</key>
-		<string>#056e28</string>
-		<key>Genre</key>
-		<string>Everything on shuffle</string>
-	</dict>
-	<dict>
-		<key>Name</key>
 		<string>The GGs</string>
 		<key>Source</key>
 		<string>/audioplayer/audio/~list.js</string>
-		<key>Icon</key>
-		<string>graffitiSoulFuture.png</string>
+		<key>Image</key>
+		<string>graffitiSoulFuture</string>
 		<key>Color</key>
 		<string>#00a596</string>
 		<key>Genre</key>
@@ -31,8 +19,8 @@
 		<string>Poison Jam</string>
 		<key>Source</key>
 		<string>/audioplayer/audio/poisonjam/~list.js</string>
-		<key>Icon</key>
-		<string>poisonJam.png</string>
+		<key>Image</key>
+		<string>poisonJam</string>
 		<key>Color</key>
 		<string>#540894</string>
 		<key>Genre</key>
@@ -45,72 +33,96 @@
 		<string>Noise Tanks</string>
 		<key>Source</key>
 		<string>/audioplayer/audio/noisetanks/~list.js</string>
-		<key>Icon</key>
-		<string>noiseTanks.png</string>
+		<key>Image</key>
+		<string>noiseTanks</string>
 		<key>Color</key>
 		<string>#92b2b2</string>
 		<key>Genre</key>
 		<string>Digital and Electronic</string>
+		<key>Root</key>
+		<string>noisetanks/</string>
 	</dict>
 	<dict>
 		<key>Name</key>
 		<string>Love Shockers</string>
 		<key>Source</key>
 		<string>/audioplayer/audio/loveshockers/~list.js</string>
-		<key>Icon</key>
-		<string>loveShockers.png</string>
+		<key>Image</key>
+		<string>loveShockers</string>
 		<key>Color</key>
 		<string>#b0006b</string>
 		<key>Genre</key>
 		<string>Female Punk Vocals</string>
+		<key>Root</key>
+		<string>loveshockers/</string>
 	</dict>
 	<dict>
 		<key>Name</key>
 		<string>Rapid 99</string>
 		<key>Source</key>
 		<string>/audioplayer/audio/rapid99/~list.js</string>
-		<key>Icon</key>
-		<string>rapid99.png</string>
+		<key>Image</key>
+		<string>rapid99</string>
 		<key>Color</key>
 		<string>#f1a0f7</string>
 		<key>Genre</key>
 		<string>Upbeat Female Vocals</string>
+		<key>Root</key>
+		<string>rapid99/</string>
 	</dict>
 	<dict>
 		<key>Name</key>
 		<string>The Immortals</string>
 		<key>Source</key>
 		<string>/audioplayer/audio/immortals/~list.js</string>
-		<key>Icon</key>
-		<string>immortals.png</string>
+		<key>Image</key>
+		<string>immortals</string>
 		<key>Color</key>
 		<string>#867a66</string>
 		<key>Genre</key>
 		<string>Ethnic Balkan</string>
+		<key>Root</key>
+		<string>immortals/</string>
 	</dict>
 	<dict>
 		<key>Name</key>
 		<string>Doom Riders</string>
 		<key>Source</key>
 		<string>/audioplayer/audio/doomriders/~list.js</string>
-		<key>Icon</key>
-		<string>doomRiders.png</string>
+		<key>Image</key>
+		<string>doomRiders</string>
 		<key>Color</key>
 		<string>#67242e</string>
 		<key>Genre</key>
 		<string>Classic Rock/Biker Music</string>
+		<key>Root</key>
+		<string>doomriders/</string>
 	</dict>
 	<dict>
 		<key>Name</key>
 		<string>Golden Rhinos</string>
 		<key>Source</key>
 		<string>/audioplayer/audio/goldenrhinos/~list.js</string>
-		<key>Icon</key>
-		<string>goldenRhinos.png</string>
+		<key>Image</key>
+		<string>goldenRhinos</string>
 		<key>Color</key>
 		<string>#000000</string>
 		<key>Genre</key>
 		<string>Classical Hip-Hop</string>
+		<key>Root</key>
+		<string>goldenrhinos/</string>
+	</dict>
+	<dict>
+		<key>Name</key>
+		<string>Classic</string>
+		<key>Source</key>
+		<string></string>
+		<key>Image</key>
+		<string>graffitiSoulClassic</string>
+		<key>Color</key>
+		<string>#056e28</string>
+		<key>Genre</key>
+		<string>Everything on shuffle</string>
 	</dict>
 </array>
 </plist>

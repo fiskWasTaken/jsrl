@@ -12,6 +12,7 @@ import MediaPlayer
 class Player {
     static let shared = Player()
     
+    var activeStation: Station
     var playlist: Playlist = Playlist([])
     var currentTrack: Track?
     var player = AVPlayer()
@@ -26,6 +27,7 @@ class Player {
             MPNowPlayingInfoPropertyPlaybackRate: 0
         ]
         
+        activeStation = Stations.shared.list[0]
         initialiseMediaRemote()
     }
     
@@ -81,7 +83,14 @@ class Player {
     
     func setCurrent(track: Track) {
         currentTrack = track
-        urlAsset = AVURLAsset(url: (jsrl?.getMedia().resolveUrl(track.filename!))!)
+        
+        var path = track.filename!
+        
+        if (activeStation.root != nil) {
+            path = activeStation.root! + track.filename!
+        }
+        
+        urlAsset = AVURLAsset(url: (jsrl?.getMedia().resolveUrl(path))!)
         avItem = AVPlayerItem(asset: urlAsset!)
     }
     
@@ -98,6 +107,7 @@ class Player {
         MPNowPlayingInfoCenter.default().nowPlayingInfo = [
             MPMediaItemPropertyTitle: metadata.title,
             MPMediaItemPropertyArtist: metadata.artist,
+            MPMediaItemPropertyArtwork: MPMediaItemArtwork(image: activeStation.getImageAsset()!),
             MPNowPlayingInfoPropertyPlaybackRate: 1
         ]
         

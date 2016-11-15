@@ -12,7 +12,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="jsrl" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PlayerViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="ViewController" customModule="jsrl" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -77,9 +77,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="ehI-u1-Tok"/>
                     <connections>
-                        <outlet property="EmblemImage" destination="U23-FV-7Py" id="ppI-SJ-eD9"/>
                         <outlet property="artist" destination="yJJ-Ss-2DT" id="FB6-Zs-wqC"/>
+                        <outlet property="emblemImage" destination="U23-FV-7Py" id="9JN-ow-zqo"/>
                         <outlet property="songName" destination="gWT-jN-jyM" id="3jc-OE-EyB"/>
+                        <outlet property="uiView" destination="8bC-Xf-vdC" id="JKG-gE-4CQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -135,39 +136,39 @@
             </objects>
             <point key="canvasLocation" x="2900" y="477.21139430284859"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Station View Controller-->
         <scene sceneID="FTS-wY-U89">
             <objects>
-                <tableViewController id="qE2-5W-f5D" sceneMemberID="viewController">
+                <tableViewController id="qE2-5W-f5D" customClass="StationViewController" customModule="jsrl" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="28" sectionFooterHeight="28" id="13M-XX-36m">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="70" id="hSv-T1-HYy">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="StationViewCell" id="hSv-T1-HYy" customClass="StationViewCell" customModule="jsrl" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hSv-T1-HYy" id="Lht-V2-gKr">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="69"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Poison Jam" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TE2-We-CqE">
-                                            <rect key="frame" x="78.5" y="5" width="288.5" height="23"/>
+                                            <rect key="frame" x="78.5" y="10" width="288.5" height="23"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Grunge and Alternative" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DtE-mo-Ezc">
-                                            <rect key="frame" x="78.5" y="31" width="288.5" height="24"/>
+                                            <rect key="frame" x="78.5" y="34" width="288.5" height="24"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="poisonJam.png" translatesAutoresizingMaskIntoConstraints="NO" id="TI3-c1-xHF">
-                                            <rect key="frame" x="6.5" y="-0.5" width="65.5" height="64"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                            <rect key="frame" x="6.5" y="2.5" width="65.5" height="64"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <accessibility key="accessibilityConfiguration">
                                                 <accessibilityTraits key="traits" notEnabled="YES"/>
                                                 <bool key="isElement" value="NO"/>
@@ -175,6 +176,11 @@
                                         </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="stationArt" destination="TI3-c1-xHF" id="vZq-V6-rQo"/>
+                                    <outlet property="stationGenre" destination="DtE-mo-Ezc" id="YCn-9B-16R"/>
+                                    <outlet property="stationName" destination="TE2-We-CqE" id="SPg-hR-f8n"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
