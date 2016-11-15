@@ -94,6 +94,11 @@ class Library {
     }
 }
 
+/**
+ Simple class to extract song metadata.
+ We could use the actual metadata but JSRL's MP3's are largely untagged.
+ Instead we split the filename as all songs are stored as Artist - Song Name.mp3
+ */
 class JSRLSongMetadata {
     var artist = "Unknown Artist"
     var title = "Unknown Track"

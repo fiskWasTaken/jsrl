@@ -29,30 +29,22 @@ class ViewController: UIViewController {
         }
         
         player.jsrl = jsrl
-        player.onPlayStart = { self.updateMetadata() }
         
         let tracks = library.getTracksIn(station: "The GGs")
         player.playlist = Playlist(tracks)
         player.playlist.shuffle()
-        
     }
     
     @IBAction func onSkipButtonTouch(_ sender: Any) {
         player.next()
+        updateMetadata()
     }
     
-    /**
-     We could use the actual metadata but JSRL's MP3's are largely untagged :'(
-     Instead we split the filename as all songs are stored as Artist - Song Name.mp3
- 	 */
     func updateMetadata() {
-        if (artist != nil) {
-            if let currentTrackFile = player.currentTrack?.filename {
-                let values = currentTrackFile.components(separatedBy: " - ")
-                
-                artist.text = values[0]
-                songName.text = values[1]
-            }
+        if (artist != nil && player.currentTrack != nil) {
+            let metadata = JSRLSongMetadata(player.currentTrack!)
+            artist.text = metadata.artist
+            songName.text = metadata.title
         }
     }
 
@@ -68,6 +60,7 @@ class ViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         updateMetadata()
+        player.onPlayStart = { self.updateMetadata() }
     }
     
     @IBAction func debugPopulateLibrary(_ sender: AnyObject) {

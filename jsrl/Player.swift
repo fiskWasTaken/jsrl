@@ -23,8 +23,7 @@ class Player {
     
     init() {
         MPNowPlayingInfoCenter.default().nowPlayingInfo = [
-            MPMediaItemPropertyTitle: "Nothing",
-            MPMediaItemPropertyArtist: "Fuck"
+            MPNowPlayingInfoPropertyPlaybackRate: 0
         ]
         
         initialiseMediaRemote()

@@ -11,13 +11,15 @@ import Foundation
 // todo: some sort of caching mechanism
 // throw out unpopular songs when cache reaches a size
 class Cache {
-    
+    func getItem(_ id: String) -> CacheItem {
+    	return CacheItem(id)
+    }
 }
 
 class CacheItem {
     let id: String
     
-    init(id: String) {
+    init(_ id: String) {
         self.id = id
     }
     
