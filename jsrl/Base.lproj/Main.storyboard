@@ -79,7 +79,6 @@
                     <connections>
                         <outlet property="EmblemImage" destination="U23-FV-7Py" id="ppI-SJ-eD9"/>
                         <outlet property="artist" destination="yJJ-Ss-2DT" id="FB6-Zs-wqC"/>
-                        <outlet property="mainView" destination="8bC-Xf-vdC" id="lX8-OT-Jni"/>
                         <outlet property="songName" destination="gWT-jN-jyM" id="3jc-OE-EyB"/>
                     </connections>
                 </viewController>
@@ -90,7 +89,7 @@
         <!--View Controller-->
         <scene sceneID="1Jm-hV-Djv">
             <objects>
-                <viewController id="qkN-ys-g7W" customClass="ViewController" customModule="jsrl" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="qkN-ys-g7W" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="gAF-RE-dTw"/>
                         <viewControllerLayoutGuide type="bottom" id="zY5-Yx-rcw"/>
@@ -191,7 +190,6 @@
         <!--View Controller-->
         <scene sceneID="ZXR-aq-Ovr">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="WAh-q6-SkD" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="4hN-lC-Q9i" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9GN-bN-R5X"/>
@@ -241,6 +239,7 @@
                         </constraints>
                     </view>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WAh-q6-SkD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2900" y="-197.45127436281859"/>
         </scene>

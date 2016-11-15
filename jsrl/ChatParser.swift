@@ -47,7 +47,7 @@ class ChatParser : NSObject, XMLParserDelegate  {
                 text += data
             case "ip":
                 ip += data
-            default: break
+            	default: break
             }
         }
     }

@@ -14,13 +14,30 @@ import UIKit
  MediaLibrary offers a simple API to get tracks by station.
  */
 class Library {
+    static let shared = Library()
+    
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var list = [Track]()
-    var station = "Future"
     
-    func getRandom() -> Track {
-        let tracks = getTracksIn(station: self.station)
+    func getRandomFrom(station: String) -> Track {
+        let tracks = getTracksIn(station: station)
         return tracks[Int(arc4random_uniform(UInt32(tracks.count)))]
+    }
+    
+    /**
+     Get a shuffled list of tracks. This is more effective than calling a random track each time.
+     */
+    func getShuffledList(tracks: [Track]) -> [Track] {
+        var shuffled = tracks
+        
+        for i in 0...tracks.count {
+            let tmp = tracks[i]
+            let rand = Int(arc4random_uniform(UInt32(tracks.count)))
+            shuffled[i] = tracks[rand]
+            shuffled[rand] = tmp
+        }
+        
+        return shuffled
     }
     
     /**
