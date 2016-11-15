@@ -31,15 +31,9 @@ class StationViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let station = stations[indexPath.row]
-        print(station)
-        
         let cellIdentifier: String = "StationViewCell"
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath as IndexPath) as! StationViewCell
-        
         let image = station.getImageAsset()
-        
-        print("Image is \(image?.size.height)px")
         
         cell.stationName.text = station.name
         cell.stationGenre.text = station.genre

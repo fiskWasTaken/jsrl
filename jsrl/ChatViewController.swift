@@ -8,20 +8,65 @@
 
 import UIKit
 
-class ChatViewController: UIViewController {
-
+class ChatViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    let jsrl = JSRL()
+    @IBOutlet var chatView: UIView!
+    var messages: [ChatMessage] = []
+    
+    @IBOutlet var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
+        
+        print("viewDidLoad")
+        
+        jsrl.getChat().fetch { (err: Error?, messages: [ChatMessage]) in
+            self.messages.removeAll(keepingCapacity: true)
+            self.messages.append(contentsOf: messages)
+            
+            self.tableView.reloadData()
+        }
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        updateStationDecor()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+        messages = []
     }
     
-
+    func updateStationDecor() {
+        let station = Player.shared.activeStation
+        chatView.backgroundColor = UIColor(hexString: station.color)
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension;
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return messages.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let message = messages[indexPath.row]
+        let cellIdentifier: String = "ChatMessageViewCell"
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath as IndexPath) as! ChatMessageViewCell
+        
+        cell.username.attributedText = NSAttributedString(string: message.username)
+        cell.message.attributedText = NSAttributedString(string: message.text)
+        
+        cell.backgroundColor = UIColor(hexString: Player.shared.activeStation.color)
+        
+        cell.sizeToFit()
+        
+        return cell
+    }
+    
     /*
     // MARK: - Navigation
 

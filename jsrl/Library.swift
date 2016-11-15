@@ -34,17 +34,15 @@ class Library {
     func loadFromCoreData() -> Bool {
         let request: NSFetchRequest<Track> = Track.fetchRequest()
         
-        // todo: necessary? this can't really fail
         do {
             list = try context.fetch(request)
             return true;
         } catch {
-            print("Error with request: \(error)")
             return false;
         }
     }
     
-    func saveStation(_ station: Station, jsrl: JSRL) {
+    func downloadStationPlaylist(_ station: Station, jsrl: JSRL) {
         if (station.source == "") {
             return
         }
@@ -63,13 +61,15 @@ class Library {
                 return track
             }
             
-            print(trackList)
+            print("\(trackList.count) songs in tracklist")
             
             do {
                 try self.context.save()
             } catch let error as NSError  {
                 print("Could not save \(error), \(error.userInfo)")
             }
+            
+            _ = self.loadFromCoreData()
         }
     }
     
@@ -80,10 +80,8 @@ class Library {
         print("Downloading library")
         
         _ = Stations.shared.list.map {
-            saveStation($0, jsrl: jsrl)
+            downloadStationPlaylist($0, jsrl: jsrl)
         }
-        
-        _ = loadFromCoreData()
     }
 }
 

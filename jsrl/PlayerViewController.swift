@@ -71,8 +71,4 @@ class PlayerViewController: UIViewController {
         updateMetadata()
         updateStationDecor()
     }
-    
-    @IBAction func debugPopulateLibrary(_ sender: AnyObject) {
-        library.populateFrom(jsrl: jsrl)
-    }
 }
