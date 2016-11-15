@@ -103,11 +103,12 @@ class Player {
         self.player.play()
         
         let metadata = JSRLSongMetadata(currentTrack!)
+        let artwork = MPMediaItemArtwork(image: activeStation.getImageAsset()!)
         
         MPNowPlayingInfoCenter.default().nowPlayingInfo = [
             MPMediaItemPropertyTitle: metadata.title,
             MPMediaItemPropertyArtist: metadata.artist,
-            MPMediaItemPropertyArtwork: MPMediaItemArtwork(image: activeStation.getImageAsset()!),
+            MPMediaItemPropertyArtwork: artwork,
             MPNowPlayingInfoPropertyPlaybackRate: 1
         ]
         

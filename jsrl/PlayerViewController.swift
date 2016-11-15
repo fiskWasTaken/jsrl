@@ -13,7 +13,7 @@ import CoreData
 
 var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>!
 
-class ViewController: UIViewController {
+class PlayerViewController: UIViewController {
     @IBOutlet weak var emblemImage: UIButton!
     @IBOutlet weak var artist: UILabel!
     @IBOutlet weak var songName: UILabel!
