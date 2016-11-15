@@ -24,13 +24,17 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        player.jsrl = jsrl
-        player.onPlayStart = { self.updateMetadata() }
-        
         if (library.list.count == 0) {
             _ = library.loadFromCoreData()
         }
-    
+        
+        player.jsrl = jsrl
+        player.onPlayStart = { self.updateMetadata() }
+        
+        let tracks = library.getTracksIn(station: "The GGs")
+        player.playlist = Playlist(tracks)
+        player.playlist.shuffle()
+        
     }
     
     @IBAction func onSkipButtonTouch(_ sender: Any) {

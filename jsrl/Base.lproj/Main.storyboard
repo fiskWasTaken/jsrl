@@ -89,7 +89,7 @@
         <!--View Controller-->
         <scene sceneID="1Jm-hV-Djv">
             <objects>
-                <viewController id="qkN-ys-g7W" sceneMemberID="viewController">
+                <viewController id="qkN-ys-g7W" customClass="ViewController" customModule="jsrl" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="gAF-RE-dTw"/>
                         <viewControllerLayoutGuide type="bottom" id="zY5-Yx-rcw"/>
@@ -103,7 +103,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Reload Library"/>
                                 <connections>
-                                    <action selector="debugPopulateLibrary:" destination="qkN-ys-g7W" eventType="touchUpInside" id="Jyc-4O-PAh"/>
+                                    <action selector="debugPopulateLibrary:" destination="qkN-ys-g7W" eventType="touchUpInside" id="qWb-mc-pxD"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Rudie" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vne-gD-LRa">
@@ -148,25 +148,25 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hSv-T1-HYy" id="Lht-V2-gKr">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="69"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Poison Jam" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TE2-We-CqE">
-                                            <rect key="frame" x="80" y="5" width="287" height="23"/>
+                                            <rect key="frame" x="78.5" y="5" width="288.5" height="23"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Grunge and Alternative" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DtE-mo-Ezc">
-                                            <rect key="frame" x="80" y="31" width="287" height="24"/>
+                                            <rect key="frame" x="78.5" y="31" width="288.5" height="24"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="poisonJam.png" translatesAutoresizingMaskIntoConstraints="NO" id="TI3-c1-xHF">
-                                            <rect key="frame" x="8" y="0.0" width="64" height="64"/>
+                                            <rect key="frame" x="6.5" y="-0.5" width="65.5" height="64"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                             <accessibility key="accessibilityConfiguration">
                                                 <accessibilityTraits key="traits" notEnabled="YES"/>

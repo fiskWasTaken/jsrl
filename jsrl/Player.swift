@@ -12,12 +12,10 @@ import MediaPlayer
 class Player {
     static let shared = Player()
     
-    var playList: [Track] = []
-    var cursor = 0
+    var playlist: Playlist = Playlist([])
     var currentTrack: Track?
     var player = AVPlayer()
     var jsrl: JSRL? = nil
-    var station = "Future"
     var onPlayStart: (()->())? = nil
     
     var urlAsset: AVURLAsset? = nil
@@ -67,6 +65,11 @@ class Player {
             return MPRemoteCommandHandlerStatus.success
         })
         
+        remote.previousTrackCommand.addTarget { (MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus in
+            self.previous()
+            return MPRemoteCommandHandlerStatus.success
+        }
+        
         remote.stopCommand.addTarget(handler: { (MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus in
             self.player.pause()
             self.next()
@@ -107,7 +110,20 @@ class Player {
     }
     
     @objc func next() {
-        setCurrent(track: Library.shared.getRandomFrom(station: station))
+        if (playlist.list.count == 0) {
+            return
+        }
+        
+        setCurrent(track: playlist.getNext())
+        play()
+    }
+    
+    @objc func previous() {
+        if (playlist.list.count == 0) {
+            return
+        }
+        
+        setCurrent(track: playlist.getPrevious())
         play()
     }
 }

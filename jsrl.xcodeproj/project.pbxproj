@@ -17,6 +17,7 @@
 		C117C85E1DD9FAB6004366BB /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = C117C85D1DD9FAB6004366BB /* Player.swift */; };
 		C134D38E1DB1A0C100079CE0 /* helperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C134D38C1DB1A0C100079CE0 /* helperTests.swift */; };
 		C134D38F1DB1A0C100079CE0 /* remoteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C134D38D1DB1A0C100079CE0 /* remoteTests.swift */; };
+		C14ECFE41DDB2D5B00A69416 /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14ECFE31DDB2D5B00A69416 /* Playlist.swift */; };
 		C15971A91DD9185C004429BB /* graffitiSoulFuture.png in Resources */ = {isa = PBXBuildFile; fileRef = C15971A81DD9185C004429BB /* graffitiSoulFuture.png */; };
 		C15971B21DD91AE3004429BB /* doomRiders.png in Resources */ = {isa = PBXBuildFile; fileRef = C15971AA1DD91AE3004429BB /* doomRiders.png */; };
 		C15971B31DD91AE3004429BB /* goldenRhinos.png in Resources */ = {isa = PBXBuildFile; fileRef = C15971AB1DD91AE3004429BB /* goldenRhinos.png */; };
@@ -70,6 +71,7 @@
 		C117C85D1DD9FAB6004366BB /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		C134D38C1DB1A0C100079CE0 /* helperTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = helperTests.swift; sourceTree = "<group>"; };
 		C134D38D1DB1A0C100079CE0 /* remoteTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = remoteTests.swift; sourceTree = "<group>"; };
+		C14ECFE31DDB2D5B00A69416 /* Playlist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
 		C15971A81DD9185C004429BB /* graffitiSoulFuture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = graffitiSoulFuture.png; sourceTree = "<group>"; };
 		C15971AA1DD91AE3004429BB /* doomRiders.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = doomRiders.png; sourceTree = "<group>"; };
 		C15971AB1DD91AE3004429BB /* goldenRhinos.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = goldenRhinos.png; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 			children = (
 				C117C85B1DD9F3EA004366BB /* Library.swift */,
 				C117C85D1DD9FAB6004366BB /* Player.swift */,
+				C14ECFE31DDB2D5B00A69416 /* Playlist.swift */,
 			);
 			name = player;
 			sourceTree = "<group>";
@@ -412,6 +415,7 @@
 				C1083C951DAE8EFA00394047 /* JSRL.swift in Sources */,
 				C18119C81DAC58F000068EC0 /* Counters.swift in Sources */,
 				C1A09EE81DABD7DE00C10FE1 /* AppDelegate.swift in Sources */,
+				C14ECFE41DDB2D5B00A69416 /* Playlist.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
