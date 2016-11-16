@@ -9,8 +9,7 @@
 import UIKit
 
 class ChatMessageViewCell: UITableViewCell {
-    @IBOutlet weak var username: UILabel!
-    @IBOutlet weak var message: UILabel!
+    @IBOutlet weak var body: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()

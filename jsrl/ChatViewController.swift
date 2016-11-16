@@ -57,9 +57,14 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         let cellIdentifier: String = "ChatMessageViewCell"
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath as IndexPath) as! ChatMessageViewCell
         
-        cell.username.attributedText = NSAttributedString(string: message.username)
-        cell.message.attributedText = NSAttributedString(string: message.text)
+        let template = "<span style='font-family:sans-serif;color:#fff;font-size:14px'>\(message.username): \(message.text)</span>"
         
+        let attrStr = try! NSAttributedString(
+            data: template.data(using: String.Encoding.unicode, allowLossyConversion: true)!,
+            options: [ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType],
+            documentAttributes: nil)
+        
+        cell.body.attributedText = attrStr
         cell.backgroundColor = UIColor(hexString: Player.shared.activeStation.color)
         
         cell.sizeToFit()
