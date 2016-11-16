@@ -12,10 +12,12 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     let jsrl = JSRL()
     var messages: [ChatMessage] = []
     let defaults = UserDefaults.standard
+    var timer: Timer?
     
     @IBOutlet var chatView: UIView!
     @IBOutlet var textInput: UITextField!
     @IBOutlet var tableView: UITableView!
+    @IBOutlet var bottomConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,17 +28,39 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         reloadChat()
         updateStationDecor()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown), name:NSNotification.Name.UIKeyboardWillShow, object: nil);
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasHidden), name:NSNotification.Name.UIKeyboardWillHide, object: nil);
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        timer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(self.reloadChat), userInfo: nil, repeats: true);
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        timer?.invalidate()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self);
     }
     
     func reloadChat() {
+        print("Reloading chat...")
         jsrl.getChat().fetch { (err: Error?, messages: [ChatMessage]) in
+            print("Chat result recieved.")
             self.messages.removeAll(keepingCapacity: true)
             self.messages.append(contentsOf: messages)
             self.tableView.reloadData()
-            let indexPath = IndexPath(row: (messages.count - 1), section: 0)
-            
-			self.tableView.scrollToRow(at: indexPath, at: UITableViewScrollPosition.bottom, animated: false)
+//            self.scrollToBottom()
+            print("Chat updated.")
         }
+    }
+    
+    func scrollToBottom() {
+        let indexPath = IndexPath(row: (messages.count - 1), section: 0)
+        self.tableView.scrollToRow(at: indexPath, at: UITableViewScrollPosition.bottom, animated: false)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -57,13 +81,14 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func keyboardWasShown(notification: NSNotification) {
-        // todo
-//        let info = notification.userInfo!
-//        let keyboardFrame: CGRect = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
-//        
-//        UIView.animate(withDuration: 0.1, animations: { () -> Void in
-////            self.bottomConstraint.constant = keyboardFrame.size.height + 20
-//        })
+        let info = notification.userInfo!
+        let keyboardFrame: CGRect = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        self.bottomConstraint.constant = keyboardFrame.size.height + 46
+        self.scrollToBottom()
+    }
+    
+    func keyboardWasHidden(notification: NSNotification) {
+        self.bottomConstraint.constant = 46
     }
 
     override func didReceiveMemoryWarning() {
@@ -75,6 +100,10 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     func updateStationDecor() {
         let station = Player.shared.activeStation
         chatView.backgroundColor = UIColor(hexString: station.color)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension;
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -90,7 +119,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         let cellIdentifier: String = "ChatMessageViewCell"
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath as IndexPath) as! ChatMessageViewCell
         
-        let template = "<span style='font-family:sans-serif;color:#fff;font-size:14px'>\(message.username): \(message.text)</span>"
+        let template = "<span style='font-family:sans-serif;color:#fff;font-size:18px'>\(message.username): \(message.text)</span>"
         
         // This is all doing some nasty voodoo magic to convert the HTML string into attributed text
         let attrStr = try! NSAttributedString(
@@ -99,7 +128,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             documentAttributes: nil)
         
         cell.body.attributedText = attrStr
-        cell.backgroundColor = UIColor(hexString: Player.shared.activeStation.color)
+//        cell.backgroundColor = UIColor(hexString: Player.shared.activeStation.color)
+        cell.backgroundColor = UIColor(hexString: "#222")
         
         cell.sizeToFit()
         
