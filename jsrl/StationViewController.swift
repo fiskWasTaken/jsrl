@@ -9,6 +9,7 @@
 import UIKit
 
 class StationViewController: UITableViewController {
+    let defaults = UserDefaults.standard
     let stations = Stations.shared.list
     
     override func viewDidLoad() {
@@ -25,7 +26,6 @@ class StationViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(stations.count)
         return stations.count
     }
     
@@ -46,11 +46,18 @@ class StationViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        Player.shared.activeStation = stations[indexPath.row]
-        let tracks = Library.shared.getTracksIn(station: Player.shared.activeStation)
-        Player.shared.playlist = Playlist(tracks)
-        Player.shared.playlist.shuffle()
-        Player.shared.next()
+        let player = Player.shared
+        let library = Library.shared
+        let station = stations[indexPath.row]
+        
+        // Preserve station selection if app is restarted
+        defaults.set(station.name, forKey: "selectedStation")
+        
+        player.activeStation = station
+        let tracks = library.getTracksIn(station: player.activeStation)
+        player.playlist = Playlist(tracks)
+        player.playlist.shuffle()
+        player.next()
         
         _ = self.navigationController?.popViewController(animated: true)
     }

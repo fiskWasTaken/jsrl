@@ -51,7 +51,7 @@ class Library {
         
         let tracklists = jsrl.getTrackLists()
         
-        print("Populating \(station.name)")
+        print("Populating \(station.name)...")
         
         tracklists.parseUrl(source: station.source) { (_, strings: [String]) in
             let trackList: [NSManagedObject] = strings.map {string in
@@ -63,7 +63,7 @@ class Library {
                 return track
             }
             
-            print("\(trackList.count) songs in tracklist")
+            print("Found \(trackList.count) songs for \(station.name)")
             
             do {
                 try self.context.save()
@@ -79,7 +79,7 @@ class Library {
      Get library data from the network.
      */
     func populateFrom(jsrl: JSRL) {
-        print("Downloading library")
+        print("Downloading library...")
         
         _ = Stations.shared.list.map {
             downloadStationPlaylist($0, jsrl: jsrl)

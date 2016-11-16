@@ -29,8 +29,6 @@ class Chat : Resource {
             parser.delegate = chatParser
             parser.parse()
             
-            print(chatParser.messages.count)
-            
             callback(nil, chatParser.messages)
         }
     }
@@ -58,8 +56,6 @@ class Chat : Resource {
         request.httpMethod = "POST"
         request.cachePolicy = NSURLRequest.CachePolicy.reloadIgnoringCacheData
         request.httpBody = formData.data(using: String.Encoding.utf8)
-        
-        print(formData)
         
         let task = URLSession.shared.dataTask(with: request as URLRequest) {
             (data, response, error) in

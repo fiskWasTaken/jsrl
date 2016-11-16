@@ -21,6 +21,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("Initialising")
         let library = Library.shared
         let player = Player.shared
+        
+        let defaults = UserDefaults.standard
+        
+        if (defaults.string(forKey: "chatUsername") == nil) {
+            defaults.set("Rudie", forKey: "chatUsername")
+        }
+        
+        let selectedStation = defaults.string(forKey: "selectedStation")
+        
+        if let selectedStation = selectedStation {
+            let station = Stations.shared.getBy(name: selectedStation)
+            
+            if let station = station {
+                player.activeStation = station
+            }
+        }
+        
+        
         player.jsrl = jsrl
         
         if (library.list.count == 0) {
@@ -30,12 +48,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let tracks = library.getTracksIn(station: player.activeStation)
         player.playlist = Playlist(tracks)
         player.playlist.shuffle()
-        
-        let defaults = UserDefaults.standard
-        
-        if (defaults.string(forKey: "chatUsername") == nil) {
-            defaults.set("Rudie", forKey: "chatUsername")
-        }
         
         return true
     }
