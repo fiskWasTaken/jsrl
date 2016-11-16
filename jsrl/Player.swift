@@ -46,6 +46,7 @@ class Player {
                 self.player.play()
             }
             
+            self.updateMediaRemoteState()
             return MPRemoteCommandHandlerStatus.success
         })
         
@@ -56,11 +57,14 @@ class Player {
                 self.player.play()
             }
             
+            self.updateMediaRemoteState()
             return MPRemoteCommandHandlerStatus.success
         })
         
         remote.pauseCommand.addTarget(handler: { (MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus in
             self.player.pause()
+            
+            self.updateMediaRemoteState()
             return MPRemoteCommandHandlerStatus.success
         })
         
@@ -94,6 +98,18 @@ class Player {
         avItem = AVPlayerItem(asset: urlAsset!)
     }
     
+    func updateMediaRemoteState() {
+        let metadata = JSRLSongMetadata(currentTrack!)
+        let artwork = MPMediaItemArtwork(image: activeStation.getImageAsset()!)
+        
+        MPNowPlayingInfoCenter.default().nowPlayingInfo = [
+            MPMediaItemPropertyTitle: metadata.title,
+            MPMediaItemPropertyArtist: metadata.artist,
+            MPMediaItemPropertyArtwork: artwork,
+            MPNowPlayingInfoPropertyPlaybackRate: (isPlaying() ? 1 : 0)
+        ]
+    }
+    
     /**
      Play something on the AVPlayer.
  	 */
@@ -102,15 +118,7 @@ class Player {
         self.player = AVPlayer(playerItem: avItem)
         self.player.play()
         
-        let metadata = JSRLSongMetadata(currentTrack!)
-        let artwork = MPMediaItemArtwork(image: activeStation.getImageAsset()!)
-        
-        MPNowPlayingInfoCenter.default().nowPlayingInfo = [
-            MPMediaItemPropertyTitle: metadata.title,
-            MPMediaItemPropertyArtist: metadata.artist,
-            MPMediaItemPropertyArtwork: artwork,
-            MPNowPlayingInfoPropertyPlaybackRate: 1
-        ]
+        updateMediaRemoteState()
         
         NotificationCenter.default.addObserver(self, selector: #selector(next), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: avItem)
     }

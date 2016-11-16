@@ -22,14 +22,19 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         tableView.dataSource = self
         textInput.delegate = self
         
+        reloadChat()
+        updateStationDecor()
+    }
+    
+    func reloadChat() {
         jsrl.getChat().fetch { (err: Error?, messages: [ChatMessage]) in
             self.messages.removeAll(keepingCapacity: true)
             self.messages.append(contentsOf: messages)
-            
             self.tableView.reloadData()
+            let indexPath = IndexPath(row: (messages.count - 1), section: 0)
+            
+			self.tableView.scrollToRow(at: indexPath, at: UITableViewScrollPosition.bottom, animated: false)
         }
-        
-        updateStationDecor()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -39,8 +44,8 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             message.text = textInput.text!
             
             jsrl.getChat().send(message, { (error, response) in
-                print(error)
-                print(response)
+                // todo handle errors
+                self.reloadChat()
             })
             
             textInput.text = ""
@@ -48,6 +53,15 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
         return true
     }
+//    
+//    func keyboardWasShown(notification: NSNotification) {
+//        let info = notification.userInfo!
+//        let keyboardFrame: CGRect = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+//        
+//        UIView.animateWithDuration(0.1, animations: { () -> Void in
+//            self.bottomConstraint.constant = keyboardFrame.size.height + 20
+//        })
+//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
