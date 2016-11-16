@@ -40,7 +40,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == textInput {
             let message = ChatMessage()
-            message.username = "idot"
+            message.username = "fiskers"
             message.text = textInput.text!
             
             jsrl.getChat().send(message, { (error, response) in
@@ -53,15 +53,16 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
         return true
     }
-//    
-//    func keyboardWasShown(notification: NSNotification) {
+    
+    func keyboardWasShown(notification: NSNotification) {
+        // todo
 //        let info = notification.userInfo!
 //        let keyboardFrame: CGRect = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
 //        
-//        UIView.animateWithDuration(0.1, animations: { () -> Void in
-//            self.bottomConstraint.constant = keyboardFrame.size.height + 20
+//        UIView.animate(withDuration: 0.1, animations: { () -> Void in
+////            self.bottomConstraint.constant = keyboardFrame.size.height + 20
 //        })
-//    }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -112,5 +113,21 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Pass the selected object to the new view controller.
     }
     */
+}
 
+
+class ChatMessageViewCell: UITableViewCell {
+    @IBOutlet weak var body: UILabel!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
+    }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        
+        // Configure the view for the selected state
+    }
+    
 }

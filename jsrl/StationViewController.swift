@@ -47,13 +47,19 @@ class StationViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         Player.shared.activeStation = stations[indexPath.row]
-        let tracks = Library.shared.getTracksIn(station: Player.shared.activeStation.name)
+        let tracks = Library.shared.getTracksIn(station: Player.shared.activeStation)
         Player.shared.playlist = Playlist(tracks)
         Player.shared.playlist.shuffle()
         Player.shared.next()
         
         _ = self.navigationController?.popViewController(animated: true)
     }
+}
+
+class StationViewCell: UITableViewCell {
+    @IBOutlet weak var stationArt: UIImageView!
+    @IBOutlet weak var stationName: UILabel!
+    @IBOutlet weak var stationGenre: UILabel!
 }
 
 extension UIColor {

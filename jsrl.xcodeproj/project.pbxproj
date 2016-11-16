@@ -20,10 +20,8 @@
 		C14ECFE41DDB2D5B00A69416 /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14ECFE31DDB2D5B00A69416 /* Playlist.swift */; };
 		C14ECFE61DDB455600A69416 /* StationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14ECFE51DDB455600A69416 /* StationViewController.swift */; };
 		C14ECFE81DDB457800A69416 /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14ECFE71DDB457800A69416 /* Station.swift */; };
-		C14ECFEA1DDB5BAF00A69416 /* StationViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14ECFE91DDB5BAF00A69416 /* StationViewCell.swift */; };
 		C14ECFEC1DDB6F7F00A69416 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14ECFEB1DDB6F7F00A69416 /* ChatViewController.swift */; };
 		C14ECFEE1DDB6F8D00A69416 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14ECFED1DDB6F8D00A69416 /* SettingsViewController.swift */; };
-		C14ECFF01DDBAF8100A69416 /* ChatMessageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14ECFEF1DDBAF8100A69416 /* ChatMessageViewCell.swift */; };
 		C14ECFF21DDBCD8500A69416 /* previewTitle.png in Resources */ = {isa = PBXBuildFile; fileRef = C14ECFF11DDBCD8500A69416 /* previewTitle.png */; };
 		C15971A91DD9185C004429BB /* graffitiSoulFuture.png in Resources */ = {isa = PBXBuildFile; fileRef = C15971A81DD9185C004429BB /* graffitiSoulFuture.png */; };
 		C15971B21DD91AE3004429BB /* doomRiders.png in Resources */ = {isa = PBXBuildFile; fileRef = C15971AA1DD91AE3004429BB /* doomRiders.png */; };
@@ -81,10 +79,8 @@
 		C14ECFE31DDB2D5B00A69416 /* Playlist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
 		C14ECFE51DDB455600A69416 /* StationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationViewController.swift; sourceTree = "<group>"; };
 		C14ECFE71DDB457800A69416 /* Station.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Station.swift; sourceTree = "<group>"; };
-		C14ECFE91DDB5BAF00A69416 /* StationViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationViewCell.swift; sourceTree = "<group>"; };
 		C14ECFEB1DDB6F7F00A69416 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		C14ECFED1DDB6F8D00A69416 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		C14ECFEF1DDBAF8100A69416 /* ChatMessageViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMessageViewCell.swift; sourceTree = "<group>"; };
 		C14ECFF11DDBCD8500A69416 /* previewTitle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = previewTitle.png; sourceTree = "<group>"; };
 		C15971A81DD9185C004429BB /* graffitiSoulFuture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = graffitiSoulFuture.png; sourceTree = "<group>"; };
 		C15971AA1DD91AE3004429BB /* doomRiders.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = doomRiders.png; sourceTree = "<group>"; };
@@ -200,7 +196,6 @@
 				C15971B01DD91AE3004429BB /* poisonJam.png */,
 				C15971B11DD91AE3004429BB /* rapid99.png */,
 				C15971A81DD9185C004429BB /* graffitiSoulFuture.png */,
-				C18119D01DAE83A800068EC0 /* Stations.plist */,
 			);
 			name = assets;
 			sourceTree = "<group>";
@@ -232,18 +227,17 @@
 				C1083C931DAE8EEB00394047 /* api */,
 				C18119CF1DAE836000068EC0 /* assets */,
 				C18119C91DAD7ACA00068EC0 /* cache */,
-				C1A09EE71DABD7DE00C10FE1 /* AppDelegate.swift */,
-				C1A09EEB1DABD7DE00C10FE1 /* Main.storyboard */,
 				C1A09EF11DABD7DE00C10FE1 /* Assets.xcassets */,
-				C1A09EF31DABD7DE00C10FE1 /* LaunchScreen.storyboard */,
-				C117C8521DD93FF4004366BB /* PlayerViewController.swift */,
-				C1A09EF61DABD7DE00C10FE1 /* Info.plist */,
 				C1A09EEE1DABD7DE00C10FE1 /* jsrl.xcdatamodeld */,
+				C1A09EF61DABD7DE00C10FE1 /* Info.plist */,
+				C18119D01DAE83A800068EC0 /* Stations.plist */,
+				C1A09EEB1DABD7DE00C10FE1 /* Main.storyboard */,
+				C1A09EF31DABD7DE00C10FE1 /* LaunchScreen.storyboard */,
+				C1A09EE71DABD7DE00C10FE1 /* AppDelegate.swift */,
 				C14ECFEB1DDB6F7F00A69416 /* ChatViewController.swift */,
+				C117C8521DD93FF4004366BB /* PlayerViewController.swift */,
 				C14ECFE51DDB455600A69416 /* StationViewController.swift */,
-				C14ECFE91DDB5BAF00A69416 /* StationViewCell.swift */,
 				C14ECFED1DDB6F8D00A69416 /* SettingsViewController.swift */,
-				C14ECFEF1DDBAF8100A69416 /* ChatMessageViewCell.swift */,
 			);
 			path = jsrl;
 			sourceTree = "<group>";
@@ -428,7 +422,6 @@
 				C1F0C4631DAFBB1C00E6C992 /* Media.swift in Sources */,
 				C14ECFEE1DDB6F8D00A69416 /* SettingsViewController.swift in Sources */,
 				C1F0C4651DAFBB3D00E6C992 /* Resource.swift in Sources */,
-				C14ECFF01DDBAF8100A69416 /* ChatMessageViewCell.swift in Sources */,
 				C18119C41DAC30EC00068EC0 /* Chat.swift in Sources */,
 				C1A09EF01DABD7DE00C10FE1 /* jsrl.xcdatamodeld in Sources */,
 				C18119C61DAC3FDB00068EC0 /* Requests.swift in Sources */,
@@ -441,7 +434,6 @@
 				C1083C951DAE8EFA00394047 /* JSRL.swift in Sources */,
 				C18119C81DAC58F000068EC0 /* Counters.swift in Sources */,
 				C1A09EE81DABD7DE00C10FE1 /* AppDelegate.swift in Sources */,
-				C14ECFEA1DDB5BAF00A69416 /* StationViewCell.swift in Sources */,
 				C14ECFE81DDB457800A69416 /* Station.swift in Sources */,
 				C14ECFE41DDB2D5B00A69416 /* Playlist.swift in Sources */,
 			);

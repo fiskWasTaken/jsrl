@@ -66,19 +66,22 @@ class Station {
     }
 }
 
+/**
+ Station repository. Use the shared instance.
+ */
 class Stations {
     static let shared = Stations()
     
     let list: [Station]
     
     init() {
-        var stationArray: NSArray?
+        var stations: NSArray?
         
         if let path = Bundle.main.path(forResource: "Stations", ofType: "plist") {
-            stationArray = NSArray(contentsOfFile: path)
+            stations = NSArray(contentsOfFile: path)
         }
         
-        if let stations = stationArray {
+        if let stations = stations {
             list = stations.map({
                 return Station($0 as! NSDictionary)
             })

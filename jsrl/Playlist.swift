@@ -9,7 +9,7 @@
 import Foundation
 
 /**
- Manages a sequential playlist that loops forever..
+ Playlist manages a sequential playlist that loops forever.
  */
 class Playlist {
     var list: [Track]

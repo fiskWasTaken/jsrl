@@ -11,6 +11,9 @@ import Foundation
 class Counters : Resource {
 }
 
+/**
+ Counter user entity.
+ */
 class CounterUser {
     var ip: String
     var timestamp: Int

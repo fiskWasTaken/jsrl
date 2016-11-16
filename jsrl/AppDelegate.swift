@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             _ = library.loadFromCoreData()
         }
         
-        let tracks = library.getTracksIn(station: player.activeStation.name)
+        let tracks = library.getTracksIn(station: player.activeStation)
         player.playlist = Playlist(tracks)
         player.playlist.shuffle()
         return true

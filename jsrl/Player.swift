@@ -9,6 +9,9 @@
 import AVFoundation
 import MediaPlayer
 
+/**
+ Player manages the iOS media remote. Use the shared instance.
+ */
 class Player {
     static let shared = Player()
     
@@ -27,6 +30,7 @@ class Player {
             MPNowPlayingInfoPropertyPlaybackRate: 0
         ]
         
+        // Use the first station we know about.
         activeStation = Stations.shared.list[0]
         initialiseMediaRemote()
     }
@@ -103,7 +107,6 @@ class Player {
     
     func updateMediaRemoteState() {
         let metadata = JSRLSongMetadata(currentTrack!)
-        
         let artwork = MPMediaItemArtwork(boundsSize: CGSize(), requestHandler: {size in self.activeStation.getImageAsset()!})
         
         MPNowPlayingInfoCenter.default().nowPlayingInfo = [

@@ -19,10 +19,6 @@ import XCTest
 class remoteTests: XCTestCase {
     let context = JSRL()
     
-    func testChatTail() {
-        
-    }
-    
     func testChat() {
         let exp = expectation(description: "Fetch the chat log")
         

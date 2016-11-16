@@ -115,13 +115,6 @@ class ChatMessage: CustomStringConvertible {
         self.ip = ip
     }
     
-    /**
-     ChatMessage equality comparator
- 	*/
-    static func ==(left:ChatMessage, right: ChatMessage) -> Bool {
-        return left.username == right.username && left.text == right.text
-    }
-    
     var description: String {
         return "[ChatMessage] \(username): \(text)"
     }

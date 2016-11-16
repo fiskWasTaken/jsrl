@@ -22,14 +22,16 @@ class Library {
     /**
      Get all tracks belonging to Station.
  	 */
-    func getTracksIn(station: String) -> [Track] {
+    func getTracksIn(station: Station) -> [Track] {
     	return self.list.filter({ (track: Track) -> Bool in
-    		return track.station == station
+    		return station.source == "" || track.station == station.name
     	})
     }
     
     /**
      Load library from Core Data.
+     
+     - returns: True if loading from Core Data was successful.
      */
     func loadFromCoreData() -> Bool {
         let request: NSFetchRequest<Track> = Track.fetchRequest()
