@@ -12,9 +12,24 @@ import CoreData
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
+    let jsrl = JSRL()
 
-    
+    /**
+     Application initialiser.
+     */
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        print("Initialising")
+        let library = Library.shared
+        let player = Player.shared
+        player.jsrl = jsrl
+        
+        if (library.list.count == 0) {
+            _ = library.loadFromCoreData()
+        }
+        
+        let tracks = library.getTracksIn(station: player.activeStation.name)
+        player.playlist = Playlist(tracks)
+        player.playlist.shuffle()
         return true
     }
     

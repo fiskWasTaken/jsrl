@@ -8,17 +8,19 @@
 
 import UIKit
 
-class ChatViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ChatViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     let jsrl = JSRL()
     @IBOutlet var chatView: UIView!
     var messages: [ChatMessage] = []
     
+    @IBOutlet var textInput: UITextField!
     @IBOutlet var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         
-        print("viewDidLoad")
+        tableView.delegate = self
+        tableView.dataSource = self
+        textInput.delegate = self
         
         jsrl.getChat().fetch { (err: Error?, messages: [ChatMessage]) in
             self.messages.removeAll(keepingCapacity: true)
@@ -27,10 +29,24 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             self.tableView.reloadData()
         }
         
-        tableView.delegate = self
-        tableView.dataSource = self
-        
         updateStationDecor()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == textInput {
+            let message = ChatMessage()
+            message.username = "idot"
+            message.text = textInput.text!
+            
+            jsrl.getChat().send(message, { (error, response) in
+                print(error)
+                print(response)
+            })
+            
+            textInput.text = ""
+            return false
+        }
+        return true
     }
 
     override func didReceiveMemoryWarning() {
@@ -59,6 +75,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         let template = "<span style='font-family:sans-serif;color:#fff;font-size:14px'>\(message.username): \(message.text)</span>"
         
+        // This is all doing some nasty voodoo magic to convert the HTML string into attributed text
         let attrStr = try! NSAttributedString(
             data: template.data(using: String.Encoding.unicode, allowLossyConversion: true)!,
             options: [ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType],

@@ -42,34 +42,34 @@ class Chat : Resource {
      	- message: A ChatMessage.
     	- callback: Callback returning an Error (nil if OK) and an URLResponse.
      */
-    func send(_ message: ChatMessage, _ callback: @escaping (_ err: Error, _ response: URLResponse)->()) {
+    func send(_ message: ChatMessage, _ callback: @escaping (_ err: Error?, _ response: URLResponse?)->()) {
         let url = URL(string: context.root + sendEndpoint)
         
+        // Create our form string. There's probably a better way to do this
         let form: [String: String] = [
             "chatmessage": message.text,
             "chatpassword": message.password ? "true" : "false",
             "username": message.username
         ]
         
-        let formData = form.map({"\($0)=\($1.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed))"}).joined(separator: "&")
+        let formData = form.map({"\($0)=\($1.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)"}).joined(separator: "&")
         
         var request = URLRequest(url: url!)
         request.httpMethod = "POST"
         request.cachePolicy = NSURLRequest.CachePolicy.reloadIgnoringCacheData
         request.httpBody = formData.data(using: String.Encoding.utf8)
         
+        print(formData)
+        
         let task = URLSession.shared.dataTask(with: request as URLRequest) {
             (data, response, error) in
             
-            guard let data = data, let _:URLResponse = response  , error == nil else {
-                print("error")
+            guard let _ = data, let _:URLResponse = response  , error == nil else {
+                callback(error, response)
                 return
             }
             
-            let dataString =  String(data: data, encoding: String.Encoding.utf8)
-            print(dataString ?? "")
-            
-//            callback("", dataString!)
+            callback(nil, response)
         }
         
         task.resume()

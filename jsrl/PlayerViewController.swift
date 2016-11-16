@@ -19,22 +19,8 @@ class PlayerViewController: UIViewController {
     @IBOutlet weak var songName: UILabel!
     @IBOutlet var uiView: UIView!
     
-    let jsrl = JSRL()
     var library = Library.shared
     var player = Player.shared
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        if (library.list.count == 0) {
-            _ = library.loadFromCoreData()
-        }
-        
-        player.jsrl = jsrl
-        
-        let tracks = library.getTracksIn(station: Player.shared.activeStation.name)
-        player.playlist = Playlist(tracks)
-        player.playlist.shuffle()
-    }
     
     @IBAction func onSkipButtonTouch(_ sender: Any) {
         player.next()

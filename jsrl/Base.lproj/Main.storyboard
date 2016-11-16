@@ -253,7 +253,7 @@
                                 <accessibility key="accessibilityConfiguration" hint="Send a message" label="Message box"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="send"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -264,6 +264,7 @@
                     <connections>
                         <outlet property="chatView" destination="XoL-Sp-UJR" id="E5y-Da-Ya7"/>
                         <outlet property="tableView" destination="jQ2-NJ-KAn" id="gJm-BY-abz"/>
+                        <outlet property="textInput" destination="ffM-aT-S9t" id="mMq-uq-LrY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WAh-q6-SkD" userLabel="First Responder" sceneMemberID="firstResponder"/>
