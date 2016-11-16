@@ -30,6 +30,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let tracks = library.getTracksIn(station: player.activeStation)
         player.playlist = Playlist(tracks)
         player.playlist.shuffle()
+        
+        let defaults = UserDefaults.standard
+        
+        if (defaults.string(forKey: "chatUsername") == nil) {
+            defaults.set("Rudie", forKey: "chatUsername")
+        }
+        
         return true
     }
     

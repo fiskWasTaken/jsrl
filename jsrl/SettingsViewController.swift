@@ -8,10 +8,16 @@
 
 import UIKit
 
-class SettingsViewController: UIViewController {
+class SettingsViewController: UIViewController, UITextFieldDelegate {
+    let defaults = UserDefaults.standard
 
+    @IBOutlet var chatUsername: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+		chatUsername.text = defaults.string(forKey: "chatUsername")
+        chatUsername.delegate = self
 
         // Do any additional setup after loading the view.
     }
@@ -23,5 +29,13 @@ class SettingsViewController: UIViewController {
     
     @IBAction func debugPopulateLibrary(_ sender: AnyObject) {
         Library.shared.populateFrom(jsrl: JSRL())
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == chatUsername {
+            defaults.set(textField.text!, forKey: "chatUsername")
+            return false
+        }
+        return true
     }
 }

@@ -114,7 +114,7 @@
 	</dict>
 	<dict>
 		<key>Name</key>
-		<string>Classic</string>
+		<string>Shuffle</string>
 		<key>Source</key>
 		<string></string>
 		<key>Image</key>
@@ -122,7 +122,7 @@
 		<key>Color</key>
 		<string>#056e28</string>
 		<key>Genre</key>
-		<string>Everything on shuffle</string>
+		<string>Anything Goes</string>
 	</dict>
 </array>
 </plist>

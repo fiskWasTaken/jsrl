@@ -131,6 +131,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="chatUsername" destination="Vne-gD-LRa" id="ZCM-Hm-QVU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KtJ-rg-wa2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

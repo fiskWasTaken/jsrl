@@ -10,11 +10,13 @@ import UIKit
 
 class ChatViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     let jsrl = JSRL()
-    @IBOutlet var chatView: UIView!
     var messages: [ChatMessage] = []
+    let defaults = UserDefaults.standard
     
+    @IBOutlet var chatView: UIView!
     @IBOutlet var textInput: UITextField!
     @IBOutlet var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -40,7 +42,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == textInput {
             let message = ChatMessage()
-            message.username = "fiskers"
+            message.username = defaults.string(forKey: "chatUsername")!
             message.text = textInput.text!
             
             jsrl.getChat().send(message, { (error, response) in
