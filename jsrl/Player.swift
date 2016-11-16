@@ -113,7 +113,8 @@ class Player {
             MPMediaItemPropertyTitle: metadata.title,
             MPMediaItemPropertyArtist: metadata.artist,
             MPMediaItemPropertyArtwork: artwork,
-            MPNowPlayingInfoPropertyPlaybackRate: (isPlaying() ? 1 : 0)
+            MPNowPlayingInfoPropertyPlaybackRate: (isPlaying() ? 1 : 0),
+            MPNowPlayingInfoPropertyIsLiveStream: true
         ]
     }
     

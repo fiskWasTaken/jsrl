@@ -128,6 +128,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             documentAttributes: nil)
         
         cell.body.attributedText = attrStr
+        
 //        cell.backgroundColor = UIColor(hexString: Player.shared.activeStation.color)
         cell.backgroundColor = UIColor(hexString: "#222")
         
