@@ -86,4 +86,14 @@ class Stations {
             list = []
         }
     }
+    
+    func getBy(name: String) -> Station? {
+        for station in list {
+            if (station.name == name) {
+                return station
+            }
+        }
+        
+        return nil
+    }
 }

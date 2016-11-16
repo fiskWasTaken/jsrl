@@ -89,18 +89,22 @@ class Player {
         currentTrack = track
         
         var path = track.filename!
+        let station = Stations.shared.getBy(name: track.station!)
         
-        if (activeStation.root != nil) {
-            path = activeStation.root! + track.filename!
+        if let station = station {
+            if (station.root != nil) {
+                path = station.root! + track.filename!
+            }
         }
-        
+
         urlAsset = AVURLAsset(url: (jsrl?.getMedia().resolveUrl(path))!)
         avItem = AVPlayerItem(asset: urlAsset!)
     }
     
     func updateMediaRemoteState() {
         let metadata = JSRLSongMetadata(currentTrack!)
-        let artwork = MPMediaItemArtwork(image: activeStation.getImageAsset()!)
+        
+        let artwork = MPMediaItemArtwork(boundsSize: CGSize(), requestHandler: {size in self.activeStation.getImageAsset()!})
         
         MPNowPlayingInfoCenter.default().nowPlayingInfo = [
             MPMediaItemPropertyTitle: metadata.title,
