@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -22,24 +23,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Not Playing" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gWT-jN-jyM">
-                                <rect key="frame" x="16" y="461" width="343" height="21"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <color key="textColor" red="0.99019607843137258" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Skip to play, emblem for stations" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yJJ-Ss-2DT">
-                                <rect key="frame" x="16" y="483" width="343" height="21"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <gestureRecognizers/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <color key="textColor" red="0.99019607843137258" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U23-FV-7Py">
-                                <rect key="frame" x="44" y="186" width="286" height="267"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U23-FV-7Py">
+                                <rect key="frame" x="44" y="186" width="287" height="268"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="U23-FV-7Py" secondAttribute="height" multiplier="286:267" id="CFO-ri-VXT"/>
+                                </constraints>
                                 <state key="normal" image="graffitiSoulFuture.png"/>
                                 <connections>
                                     <segue destination="qE2-5W-f5D" kind="show" id="b2t-jq-pVw"/>
@@ -73,8 +61,33 @@
                                     <segue destination="qkN-ys-g7W" kind="show" id="kgv-Hg-yA1"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Not Playing" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gWT-jN-jyM">
+                                <rect key="frame" x="16" y="483" width="343" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="0.99019607843137258" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Skip to play, emblem for stations" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yJJ-Ss-2DT">
+                                <rect key="frame" x="16" y="505" width="343" height="21"/>
+                                <gestureRecognizers/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" red="0.99019607843137258" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.83735334391367777" green="0.52701779335148591" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="yJJ-Ss-2DT" firstAttribute="top" secondItem="gWT-jN-jyM" secondAttribute="bottom" constant="1" id="HtG-qW-eFY"/>
+                            <constraint firstItem="U23-FV-7Py" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Mpb-Oa-LV0"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="yJJ-Ss-2DT" secondAttribute="trailing" id="OIA-c4-ma3"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="yJJ-Ss-2DT" secondAttribute="bottom" constant="141" id="WeM-25-XUp"/>
+                            <constraint firstItem="U23-FV-7Py" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="28" id="jK5-vo-w3H"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="yJJ-Ss-2DT" secondAttribute="leading" id="mmC-WH-Hfd"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="gWT-jN-jyM" secondAttribute="trailing" id="n9T-F1-BUR"/>
+                            <constraint firstItem="U23-FV-7Py" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="sgn-ug-V7v"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="U23-FV-7Py" secondAttribute="trailing" constant="28" id="xCI-qw-u3F"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="gWT-jN-jyM" secondAttribute="leading" id="xVd-AQ-jPg"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ehI-u1-Tok"/>
                     <connections>

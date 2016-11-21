@@ -38,9 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         
-        
         player.jsrl = jsrl
-        
         _ = library.loadFromCoreData()
         
         if (library.list.count == 0) {
@@ -48,7 +46,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             Library.shared.populateFrom(jsrl: JSRL(), onComplete: {
                 print("Reloading library")
-                
                 _ = library.loadFromCoreData()
                 self.afterInit()
             })
