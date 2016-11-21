@@ -44,8 +44,9 @@ class Library {
         }
     }
     
-    func downloadStationPlaylist(_ station: Station, jsrl: JSRL) {
+    func downloadStationPlaylist(_ station: Station, jsrl: JSRL, onComplete: @escaping ()->()) {
         if (station.source == "") {
+            onComplete()
             return
         }
         
@@ -71,18 +72,26 @@ class Library {
                 print("Could not save \(error), \(error.userInfo)")
             }
             
-            _ = self.loadFromCoreData()
+            onComplete()
         }
     }
     
     /**
      Get library data from the network.
      */
-    func populateFrom(jsrl: JSRL) {
+    func populateFrom(jsrl: JSRL, onComplete: @escaping ()->()) {
         print("Downloading library...")
         
+        var remaining = Stations.shared.list.count
+        
         _ = Stations.shared.list.map {
-            downloadStationPlaylist($0, jsrl: jsrl)
+            downloadStationPlaylist($0, jsrl: jsrl, onComplete: {
+                remaining -= 1
+                
+                if (remaining == 0) {
+                    onComplete()
+                }
+            })
         }
     }
 }

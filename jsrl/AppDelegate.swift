@@ -41,15 +41,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         player.jsrl = jsrl
         
+        _ = library.loadFromCoreData()
+        
         if (library.list.count == 0) {
-            _ = library.loadFromCoreData()
+            print("Performing first-time setup")
+            
+            Library.shared.populateFrom(jsrl: JSRL(), onComplete: {
+                print("Reloading library")
+                
+                _ = library.loadFromCoreData()
+                self.afterInit()
+            })
+        } else {
+            print("Library already loaded, skipping firstrun")
+            self.afterInit()
         }
+        
+        
+        return true
+    }
+    
+    func afterInit() {
+        let library = Library.shared
+        let player = Player.shared
         
         let tracks = library.getTracksIn(station: player.activeStation)
         player.playlist = Playlist(tracks)
         player.playlist.shuffle()
-        
-        return true
     }
     
     func applicationWillResignActive(_ application: UIApplication) {

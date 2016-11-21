@@ -28,7 +28,10 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func debugPopulateLibrary(_ sender: AnyObject) {
-        Library.shared.populateFrom(jsrl: JSRL())
+        Library.shared.populateFrom(jsrl: JSRL(), onComplete: {
+            print("Reloading library")
+            _ = Library.shared.loadFromCoreData()
+        })
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
