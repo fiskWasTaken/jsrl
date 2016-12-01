@@ -2,9 +2,6 @@
 //  MediaPlayer.swift
 //  jsrl
 //
-//  Created by Fisk on 14/11/2016.
-//  Copyright © 2016 fisk. All rights reserved.
-//
 
 import CoreData
 import UIKit

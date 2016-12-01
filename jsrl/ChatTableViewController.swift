@@ -1,12 +1,11 @@
 //
-//  ChatViewController.swift
+//  ChatTableViewController.swift
 //  jsrl
 //
 
 import UIKit
 
-class ChatViewController: UIViewController, UITextFieldDelegate {
-    let chatUpdateInterval = 5
+class ChatTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     let jsrl = JSRL()
     var messages: [ChatMessage] = []
     let defaults = UserDefaults.standard
@@ -14,11 +13,14 @@ class ChatViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var chatView: UIView!
     @IBOutlet var textInput: UITextField!
+    @IBOutlet var tableView: UITableView!
     @IBOutlet var bottomConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.delegate = self
+        tableView.dataSource = self
         textInput.delegate = self
         
         reloadChat()
@@ -30,7 +32,7 @@ class ChatViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        timer = Timer.scheduledTimer(timeInterval: chatUpdateInterval, target: self, selector: #selector(self.reloadChat), userInfo: nil, repeats: true);
+        timer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(self.reloadChat), userInfo: nil, repeats: true);
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -48,7 +50,7 @@ class ChatViewController: UIViewController, UITextFieldDelegate {
             self.messages.removeAll(keepingCapacity: true)
             self.messages.append(contentsOf: messages)
             self.tableView.reloadData()
-            //            self.scrollToBottom()
+//            self.scrollToBottom()
             print("Chat updated.")
         }
     }
@@ -85,7 +87,7 @@ class ChatViewController: UIViewController, UITextFieldDelegate {
     func keyboardWasHidden(notification: NSNotification) {
         self.bottomConstraint.constant = 46
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -95,6 +97,18 @@ class ChatViewController: UIViewController, UITextFieldDelegate {
     func updateStationDecor() {
         let station = Player.shared.activeStation
         chatView.backgroundColor = UIColor(hexString: station.color)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension;
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension;
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return messages.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -112,7 +126,7 @@ class ChatViewController: UIViewController, UITextFieldDelegate {
         
         cell.body.attributedText = attrStr
         
-        //        cell.backgroundColor = UIColor(hexString: Player.shared.activeStation.color)
+//        cell.backgroundColor = UIColor(hexString: Player.shared.activeStation.color)
         cell.backgroundColor = UIColor(hexString: "#222")
         
         cell.sizeToFit()

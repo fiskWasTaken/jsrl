@@ -2,9 +2,6 @@
 //  Station.swift
 //  jsrl
 //
-//  Created by Fisk on 15/11/2016.
-//  Copyright © 2016 fisk. All rights reserved.
-//
 
 import Foundation
 import UIKit

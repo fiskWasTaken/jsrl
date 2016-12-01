@@ -211,10 +211,10 @@
             </objects>
             <point key="canvasLocation" x="1965.5999999999999" y="927.88605697151434"/>
         </scene>
-        <!--Chat View Controller-->
+        <!--Chat Table View Controller-->
         <scene sceneID="ZXR-aq-Ovr">
             <objects>
-                <viewController id="4hN-lC-Q9i" customClass="ChatViewController" customModule="jsrl" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="4hN-lC-Q9i" customClass="ChatTableViewController" customModule="jsrl" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9GN-bN-R5X"/>
                         <viewControllerLayoutGuide type="bottom" id="TQo-zr-1fZ"/>

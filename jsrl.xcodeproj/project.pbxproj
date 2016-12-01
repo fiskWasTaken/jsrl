@@ -20,7 +20,7 @@
 		C14ECFE41DDB2D5B00A69416 /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14ECFE31DDB2D5B00A69416 /* Playlist.swift */; };
 		C14ECFE61DDB455600A69416 /* StationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14ECFE51DDB455600A69416 /* StationViewController.swift */; };
 		C14ECFE81DDB457800A69416 /* Station.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14ECFE71DDB457800A69416 /* Station.swift */; };
-		C14ECFEC1DDB6F7F00A69416 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14ECFEB1DDB6F7F00A69416 /* ChatViewController.swift */; };
+		C14ECFEC1DDB6F7F00A69416 /* ChatTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14ECFEB1DDB6F7F00A69416 /* ChatTableViewController.swift */; };
 		C14ECFEE1DDB6F8D00A69416 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14ECFED1DDB6F8D00A69416 /* SettingsViewController.swift */; };
 		C14ECFF21DDBCD8500A69416 /* previewTitle.png in Resources */ = {isa = PBXBuildFile; fileRef = C14ECFF11DDBCD8500A69416 /* previewTitle.png */; };
 		C15971A91DD9185C004429BB /* graffitiSoulFuture.png in Resources */ = {isa = PBXBuildFile; fileRef = C15971A81DD9185C004429BB /* graffitiSoulFuture.png */; };
@@ -35,8 +35,8 @@
 		C18119C41DAC30EC00068EC0 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18119C31DAC30EC00068EC0 /* Chat.swift */; };
 		C18119C61DAC3FDB00068EC0 /* Requests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18119C51DAC3FDB00068EC0 /* Requests.swift */; };
 		C18119C81DAC58F000068EC0 /* Counters.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18119C71DAC58F000068EC0 /* Counters.swift */; };
-		C18119CB1DAD7AD800068EC0 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18119CA1DAD7AD800068EC0 /* Cache.swift */; };
 		C18119D11DAE83A800068EC0 /* Stations.plist in Resources */ = {isa = PBXBuildFile; fileRef = C18119D01DAE83A800068EC0 /* Stations.plist */; };
+		C18758FA1DEF9E3400C1E549 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18758F91DEF9E3400C1E549 /* ChatViewController.swift */; };
 		C1A09EE81DABD7DE00C10FE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A09EE71DABD7DE00C10FE1 /* AppDelegate.swift */; };
 		C1A09EED1DABD7DE00C10FE1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1A09EEB1DABD7DE00C10FE1 /* Main.storyboard */; };
 		C1A09EF01DABD7DE00C10FE1 /* jsrl.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C1A09EEE1DABD7DE00C10FE1 /* jsrl.xcdatamodeld */; };
@@ -79,7 +79,7 @@
 		C14ECFE31DDB2D5B00A69416 /* Playlist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
 		C14ECFE51DDB455600A69416 /* StationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StationViewController.swift; sourceTree = "<group>"; };
 		C14ECFE71DDB457800A69416 /* Station.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Station.swift; sourceTree = "<group>"; };
-		C14ECFEB1DDB6F7F00A69416 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		C14ECFEB1DDB6F7F00A69416 /* ChatTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTableViewController.swift; sourceTree = "<group>"; };
 		C14ECFED1DDB6F8D00A69416 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		C14ECFF11DDBCD8500A69416 /* previewTitle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = previewTitle.png; sourceTree = "<group>"; };
 		C15971A81DD9185C004429BB /* graffitiSoulFuture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = graffitiSoulFuture.png; sourceTree = "<group>"; };
@@ -94,8 +94,8 @@
 		C18119C31DAC30EC00068EC0 /* Chat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		C18119C51DAC3FDB00068EC0 /* Requests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Requests.swift; sourceTree = "<group>"; };
 		C18119C71DAC58F000068EC0 /* Counters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Counters.swift; sourceTree = "<group>"; };
-		C18119CA1DAD7AD800068EC0 /* Cache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
 		C18119D01DAE83A800068EC0 /* Stations.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Stations.plist; sourceTree = "<group>"; };
+		C18758F91DEF9E3400C1E549 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		C1A09EE41DABD7DE00C10FE1 /* jsrl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = jsrl.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1A09EE71DABD7DE00C10FE1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C1A09EEC1DABD7DE00C10FE1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -172,14 +172,6 @@
 			name = resource;
 			sourceTree = "<group>";
 		};
-		C18119C91DAD7ACA00068EC0 /* cache */ = {
-			isa = PBXGroup;
-			children = (
-				C18119CA1DAD7AD800068EC0 /* Cache.swift */,
-			);
-			name = cache;
-			sourceTree = "<group>";
-		};
 		C18119CF1DAE836000068EC0 /* assets */ = {
 			isa = PBXGroup;
 			children = (
@@ -226,7 +218,6 @@
 				C117C85A1DD9F39B004366BB /* player */,
 				C1083C931DAE8EEB00394047 /* api */,
 				C18119CF1DAE836000068EC0 /* assets */,
-				C18119C91DAD7ACA00068EC0 /* cache */,
 				C1A09EF11DABD7DE00C10FE1 /* Assets.xcassets */,
 				C1A09EEE1DABD7DE00C10FE1 /* jsrl.xcdatamodeld */,
 				C1A09EF61DABD7DE00C10FE1 /* Info.plist */,
@@ -234,10 +225,11 @@
 				C1A09EEB1DABD7DE00C10FE1 /* Main.storyboard */,
 				C1A09EF31DABD7DE00C10FE1 /* LaunchScreen.storyboard */,
 				C1A09EE71DABD7DE00C10FE1 /* AppDelegate.swift */,
-				C14ECFEB1DDB6F7F00A69416 /* ChatViewController.swift */,
+				C14ECFEB1DDB6F7F00A69416 /* ChatTableViewController.swift */,
 				C117C8521DD93FF4004366BB /* PlayerViewController.swift */,
 				C14ECFE51DDB455600A69416 /* StationViewController.swift */,
 				C14ECFED1DDB6F8D00A69416 /* SettingsViewController.swift */,
+				C18758F91DEF9E3400C1E549 /* ChatViewController.swift */,
 			);
 			path = jsrl;
 			sourceTree = "<group>";
@@ -417,7 +409,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C18119CB1DAD7AD800068EC0 /* Cache.swift in Sources */,
 				C117C85E1DD9FAB6004366BB /* Player.swift in Sources */,
 				C1F0C4631DAFBB1C00E6C992 /* Media.swift in Sources */,
 				C14ECFEE1DDB6F8D00A69416 /* SettingsViewController.swift in Sources */,
@@ -429,7 +420,8 @@
 				C117C8531DD93FF4004366BB /* PlayerViewController.swift in Sources */,
 				C117C85C1DD9F3EA004366BB /* Library.swift in Sources */,
 				C1083C971DAE93DD00394047 /* TrackLists.swift in Sources */,
-				C14ECFEC1DDB6F7F00A69416 /* ChatViewController.swift in Sources */,
+				C18758FA1DEF9E3400C1E549 /* ChatViewController.swift in Sources */,
+				C14ECFEC1DDB6F7F00A69416 /* ChatTableViewController.swift in Sources */,
 				C1DE09661DC60F1C00F070A6 /* ChatParser.swift in Sources */,
 				C1083C951DAE8EFA00394047 /* JSRL.swift in Sources */,
 				C18119C81DAC58F000068EC0 /* Counters.swift in Sources */,

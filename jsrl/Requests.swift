@@ -2,9 +2,6 @@
 //  Requests.swift
 //  jsrl
 //
-//  Created by Fisk on 10/10/2016.
-//  Copyright © 2016 fisk. All rights reserved.
-//
 
 import Foundation
 

@@ -2,9 +2,6 @@
 //  MediaPlayer.swift
 //  jsrl
 //
-//  Created by Fisk on 14/11/2016.
-//  Copyright © 2016 fisk. All rights reserved.
-//
 
 import AVFoundation
 import MediaPlayer
@@ -41,7 +38,7 @@ class Player {
     func initialiseMediaRemote() {
         let remote = MPRemoteCommandCenter.shared()
         
-        remote.togglePlayPauseCommand.addTarget(handler: { (MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus in
+        remote.togglePlayPauseCommand.addTarget { (MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus in
             if (self.currentTrack == nil) {
                 self.next()
             } else if (self.isPlaying()) {
@@ -52,9 +49,9 @@ class Player {
             
             self.updateMediaRemoteState()
             return MPRemoteCommandHandlerStatus.success
-        })
+        }
         
-        remote.playCommand.addTarget(handler: { (MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus in
+        remote.playCommand.addTarget { (MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus in
             if (self.currentTrack == nil) {
                 self.next()
             } else {
@@ -63,32 +60,37 @@ class Player {
             
             self.updateMediaRemoteState()
             return MPRemoteCommandHandlerStatus.success
-        })
+        }
         
-        remote.pauseCommand.addTarget(handler: { (MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus in
+        remote.pauseCommand.addTarget { (MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus in
             self.player.pause()
-            
             self.updateMediaRemoteState()
             return MPRemoteCommandHandlerStatus.success
-        })
+        }
         
-        remote.nextTrackCommand.addTarget(handler: { (MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus in
+        remote.nextTrackCommand.addTarget { (MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus in
             self.next()
             return MPRemoteCommandHandlerStatus.success
-        })
+        }
         
         remote.previousTrackCommand.addTarget { (MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus in
             self.previous()
             return MPRemoteCommandHandlerStatus.success
         }
         
-        remote.stopCommand.addTarget(handler: { (MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus in
+        remote.stopCommand.addTarget { (MPRemoteCommandEvent) -> MPRemoteCommandHandlerStatus in
             self.player.pause()
             self.next()
             return MPRemoteCommandHandlerStatus.success
-        })
+        }
     }
     
+    /**
+     Set this track as the current track. Does not immediately play the track; use play().
+     
+     - parameters:
+     	- track: The track to set as the current track.
+     */
     func setCurrent(track: Track) {
         currentTrack = track
         
@@ -105,6 +107,9 @@ class Player {
         avItem = AVPlayerItem(asset: urlAsset!)
     }
     
+    /**
+     Update the status of the media remote.
+     */
     func updateMediaRemoteState() {
         let metadata = JSRLSongMetadata(currentTrack!)
         let artwork = MPMediaItemArtwork(boundsSize: CGSize(), requestHandler: {size in self.activeStation.getImageAsset()!})
