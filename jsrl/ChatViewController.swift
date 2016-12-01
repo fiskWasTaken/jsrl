@@ -1,17 +1,27 @@
 //
-//  ChatViewController.swift
+//  ChatTableViewController.swift
 //  jsrl
 //
 
 import UIKit
 
 class ChatViewController: UIViewController, UITextFieldDelegate {
-    let chatUpdateInterval = 5
+    /**
+     The chat view is done in a really inefficient way and I'm sorry.
+     I wish we had chat deltas to make updates easier but we have to
+     download the last 100 messages each time because that's how the
+     JSRL chat works.
+     */
+    
+    /** Seconds between chat updates */
+    let chatUpdateInterval = 3.0
     let jsrl = JSRL()
     var messages: [ChatMessage] = []
     let defaults = UserDefaults.standard
     var timer: Timer?
     
+    @IBOutlet var chatText: UILabel!
+    @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var chatView: UIView!
     @IBOutlet var textInput: UITextField!
     @IBOutlet var bottomConstraint: NSLayoutConstraint!
@@ -47,15 +57,31 @@ class ChatViewController: UIViewController, UITextFieldDelegate {
             print("Chat result recieved.")
             self.messages.removeAll(keepingCapacity: true)
             self.messages.append(contentsOf: messages)
-            self.tableView.reloadData()
-            //            self.scrollToBottom()
-            print("Chat updated.")
+            self.updateView()
+            Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.updateScrollPosition), userInfo: nil, repeats: false)
         }
     }
     
-    func scrollToBottom() {
-        let indexPath = IndexPath(row: (messages.count - 1), section: 0)
-        self.tableView.scrollToRow(at: indexPath, at: UITableViewScrollPosition.bottom, animated: false)
+    func updateView() {
+        let result = self.messages.map { message -> String in
+            let template = "<p style='line-height:1;margin-bottom:4px'><span style='font-family:sans-serif;color:#fff;font-size:14pt'>\(message.username): \(message.text)</span></p>"
+            return template
+        }.joined()
+        
+        // This is all doing some nasty voodoo magic to convert the HTML string into attributed text
+        let attrStr = try! NSAttributedString(
+            data: result.data(using: String.Encoding.unicode, allowLossyConversion: true)!,
+            options: [ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType],
+            documentAttributes: nil)
+        
+        chatText.attributedText = attrStr
+    }
+    
+    func updateScrollPosition() {
+        scrollView.contentSize.height = chatText.frame.height
+        var offset = scrollView.contentOffset
+        offset.y = scrollView.contentSize.height + scrollView.contentInset.bottom - scrollView.bounds.size.height
+        scrollView.setContentOffset(offset, animated: true)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -79,13 +105,13 @@ class ChatViewController: UIViewController, UITextFieldDelegate {
         let info = notification.userInfo!
         let keyboardFrame: CGRect = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         self.bottomConstraint.constant = keyboardFrame.size.height + 46
-        self.scrollToBottom()
+        self.updateScrollPosition()
     }
     
     func keyboardWasHidden(notification: NSNotification) {
         self.bottomConstraint.constant = 46
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -96,44 +122,4 @@ class ChatViewController: UIViewController, UITextFieldDelegate {
         let station = Player.shared.activeStation
         chatView.backgroundColor = UIColor(hexString: station.color)
     }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let message = messages[indexPath.row]
-        let cellIdentifier: String = "ChatMessageViewCell"
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath as IndexPath) as! ChatMessageViewCell
-        
-        let template = "<span style='font-family:sans-serif;color:#fff;font-size:18px'>\(message.username): \(message.text)</span>"
-        
-        // This is all doing some nasty voodoo magic to convert the HTML string into attributed text
-        let attrStr = try! NSAttributedString(
-            data: template.data(using: String.Encoding.unicode, allowLossyConversion: true)!,
-            options: [ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType],
-            documentAttributes: nil)
-        
-        cell.body.attributedText = attrStr
-        
-        //        cell.backgroundColor = UIColor(hexString: Player.shared.activeStation.color)
-        cell.backgroundColor = UIColor(hexString: "#222")
-        
-        cell.sizeToFit()
-        
-        return cell
-    }
-}
-
-
-class ChatMessageViewCell: UITableViewCell {
-    @IBOutlet weak var body: UILabel!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
-    }
-    
 }

@@ -211,10 +211,10 @@
             </objects>
             <point key="canvasLocation" x="1965.5999999999999" y="927.88605697151434"/>
         </scene>
-        <!--Chat Table View Controller-->
+        <!--Chat View Controller-->
         <scene sceneID="ZXR-aq-Ovr">
             <objects>
-                <viewController id="4hN-lC-Q9i" customClass="ChatTableViewController" customModule="jsrl" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="4hN-lC-Q9i" customClass="ChatViewController" customModule="jsrl" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9GN-bN-R5X"/>
                         <viewControllerLayoutGuide type="bottom" id="TQo-zr-1fZ"/>
@@ -223,79 +223,61 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="32" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jQ2-NJ-KAn">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="621"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ChatMessageViewCell" rowHeight="32" id="O3w-Tp-HHA" customClass="ChatMessageViewCell" customModule="jsrl" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="32"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="O3w-Tp-HHA" id="E2n-YL-zvP">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="32"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qKZ-KM-OCD">
-                                                    <rect key="frame" x="8" y="4" width="359" height="24"/>
-                                                    <attributedString key="attributedText">
-                                                        <fragment content="Username">
-                                                            <attributes>
-                                                                <color key="NSColor" red="0.55294110587179335" green="0.85123746772897391" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <font key="NSFont" size="17" name=".AppleSystemUIFont"/>
-                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                            </attributes>
-                                                        </fragment>
-                                                        <fragment content=": O lord, tell us so, we belong way down below">
-                                                            <attributes>
-                                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <font key="NSFont" size="17" name=".AppleSystemUIFont"/>
-                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                            </attributes>
-                                                        </fragment>
-                                                    </attributedString>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="qKZ-KM-OCD" secondAttribute="bottom" constant="4" id="9nL-Yg-fKP"/>
-                                                <constraint firstItem="qKZ-KM-OCD" firstAttribute="top" secondItem="E2n-YL-zvP" secondAttribute="top" constant="4" id="CrN-Jv-FQg"/>
-                                                <constraint firstItem="qKZ-KM-OCD" firstAttribute="leading" secondItem="E2n-YL-zvP" secondAttribute="leadingMargin" id="Eiu-aw-zab"/>
-                                                <constraint firstItem="qKZ-KM-OCD" firstAttribute="trailing" secondItem="E2n-YL-zvP" secondAttribute="trailingMargin" id="RLv-nd-A3j"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.32254516948177836" green="0.346416619707967" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <connections>
-                                            <outlet property="body" destination="qKZ-KM-OCD" id="sgv-dj-2DI"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Send a message" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ffM-aT-S9t">
                                 <rect key="frame" x="6" y="629" width="362" height="30"/>
                                 <accessibility key="accessibilityConfiguration" hint="Send a message" label="Message box"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="yRR-OR-x5L"/>
+                                </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="send"/>
                             </textField>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fqN-3U-P6z">
+                                <rect key="frame" x="0.0" y="64" width="375" height="557"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qKZ-KM-OCD">
+                                        <rect key="frame" x="8" y="8" width="359" height="20.5"/>
+                                        <attributedString key="attributedText">
+                                            <fragment content="Chat is loading...">
+                                                <attributes>
+                                                    <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <font key="NSFont" size="17" name=".AppleSystemUIFont"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.21363693080644233" green="0.12806349154873142" blue="0.22521414974619292" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="qKZ-KM-OCD" firstAttribute="trailing" secondItem="fqN-3U-P6z" secondAttribute="trailingMargin" id="QKm-uC-O6n"/>
+                                    <constraint firstItem="qKZ-KM-OCD" firstAttribute="top" secondItem="fqN-3U-P6z" secondAttribute="topMargin" id="bNT-aH-qYH"/>
+                                    <constraint firstItem="qKZ-KM-OCD" firstAttribute="centerX" secondItem="fqN-3U-P6z" secondAttribute="centerX" id="oHt-AT-wQl"/>
+                                    <constraint firstItem="qKZ-KM-OCD" firstAttribute="leading" secondItem="fqN-3U-P6z" secondAttribute="leadingMargin" id="vKO-NI-VqQ"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <accessibility key="accessibilityConfiguration" hint="Chat" label="Chat">
                             <bool key="isElement" value="YES"/>
                         </accessibility>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="jQ2-NJ-KAn" secondAttribute="trailing" id="9D9-8U-Y0W"/>
+                            <constraint firstItem="fqN-3U-P6z" firstAttribute="top" secondItem="9GN-bN-R5X" secondAttribute="bottom" id="6Qm-5k-uDF"/>
+                            <constraint firstItem="ffM-aT-S9t" firstAttribute="top" secondItem="fqN-3U-P6z" secondAttribute="bottom" constant="8" symbolic="YES" id="CVC-KG-FnO"/>
                             <constraint firstItem="ffM-aT-S9t" firstAttribute="leading" secondItem="XoL-Sp-UJR" secondAttribute="leadingMargin" constant="-10" id="GtA-e6-TpD"/>
-                            <constraint firstItem="ffM-aT-S9t" firstAttribute="top" secondItem="jQ2-NJ-KAn" secondAttribute="bottom" constant="8" id="PS9-fn-y6z"/>
-                            <constraint firstItem="jQ2-NJ-KAn" firstAttribute="leading" secondItem="XoL-Sp-UJR" secondAttribute="leading" id="UYy-hs-tzO"/>
-                            <constraint firstItem="jQ2-NJ-KAn" firstAttribute="top" secondItem="XoL-Sp-UJR" secondAttribute="top" id="td4-JP-5lC"/>
-                            <constraint firstItem="ffM-aT-S9t" firstAttribute="centerX" secondItem="jQ2-NJ-KAn" secondAttribute="centerX" id="vMk-Qz-Ha4"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="jQ2-NJ-KAn" secondAttribute="bottom" constant="46" id="wwi-Yd-s8k"/>
+                            <constraint firstItem="TQo-zr-1fZ" firstAttribute="top" secondItem="fqN-3U-P6z" secondAttribute="bottom" constant="46" id="P3C-Ty-mBS"/>
+                            <constraint firstItem="fqN-3U-P6z" firstAttribute="centerX" secondItem="ffM-aT-S9t" secondAttribute="centerX" id="YyC-71-hFA"/>
+                            <constraint firstItem="fqN-3U-P6z" firstAttribute="leading" secondItem="XoL-Sp-UJR" secondAttribute="leading" id="vny-eR-2C6"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ffM-aT-S9t" secondAttribute="trailing" constant="-9" id="xzO-NW-9td"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="bottomConstraint" destination="wwi-Yd-s8k" id="Lca-7r-ahb"/>
+                        <outlet property="bottomConstraint" destination="P3C-Ty-mBS" id="AS2-qk-Z0j"/>
+                        <outlet property="chatText" destination="qKZ-KM-OCD" id="cOV-Ey-Jle"/>
                         <outlet property="chatView" destination="XoL-Sp-UJR" id="E5y-Da-Ya7"/>
-                        <outlet property="tableView" destination="jQ2-NJ-KAn" id="gJm-BY-abz"/>
+                        <outlet property="scrollView" destination="fqN-3U-P6z" id="i1g-vg-gUq"/>
                         <outlet property="textInput" destination="ffM-aT-S9t" id="mMq-uq-LrY"/>
                     </connections>
                 </viewController>
