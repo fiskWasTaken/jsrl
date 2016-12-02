@@ -5,6 +5,10 @@
 
 import Foundation
 
+enum ChatFetchError: Error {
+    case xmlParserInitFailed
+}
+
 class Chat : Resource {
     var recvEndpoint = "/chat/messages.xml"
     var sendEndpoint = "/chat/save.php"
@@ -20,13 +24,17 @@ class Chat : Resource {
         let url = URL(string: context.root + recvEndpoint)
         
         DispatchQueue.main.async {
-            let parser = XMLParser(contentsOf: url!)!
+            let parser = XMLParser(contentsOf: url!)
             
-            let chatParser = ChatParser()
-            parser.delegate = chatParser
-            parser.parse()
-            
-            callback(nil, chatParser.messages)
+            if let parser = parser {
+                let chatParser = ChatParser()
+                parser.delegate = chatParser
+                parser.parse()
+                
+                callback(nil, chatParser.messages)
+            } else {
+                callback(ChatFetchError.xmlParserInitFailed, [])
+            }
         }
     }
     

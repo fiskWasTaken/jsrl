@@ -239,7 +239,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qKZ-KM-OCD">
                                         <rect key="frame" x="8" y="8" width="359" height="20.5"/>
                                         <attributedString key="attributedText">
-                                            <fragment content="Chat is loading...">
+                                            <fragment content="Loading chat...">
                                                 <attributes>
                                                     <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <font key="NSFont" size="17" name=".AppleSystemUIFont"/>

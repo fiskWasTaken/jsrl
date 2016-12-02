@@ -54,10 +54,15 @@ class ChatViewController: UIViewController, UITextFieldDelegate {
     func reloadChat() {
         print("Reloading chat...")
         jsrl.getChat().fetch { (err: Error?, messages: [ChatMessage]) in
+            if err != nil {
+                return
+            }
+            
             print("Chat result recieved.")
             self.messages.removeAll(keepingCapacity: true)
             self.messages.append(contentsOf: messages)
             self.updateView()
+            
             Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.updateScrollPosition), userInfo: nil, repeats: false)
         }
     }
@@ -77,11 +82,21 @@ class ChatViewController: UIViewController, UITextFieldDelegate {
         chatText.attributedText = attrStr
     }
     
+    /**
+     Update the scroll position.
+     */
     func updateScrollPosition() {
         scrollView.contentSize.height = chatText.frame.height
-        var offset = scrollView.contentOffset
-        offset.y = scrollView.contentSize.height + scrollView.contentInset.bottom - scrollView.bounds.size.height
-        scrollView.setContentOffset(offset, animated: true)
+        
+        let autoScrollPosition = scrollView.contentSize.height + scrollView.contentInset.bottom - scrollView.bounds.size.height
+        
+        // Chat will only autoscroll if the contentOffset is basically at the top
+        // or an entire screen's height before the furthest possible scroll position
+        if (scrollView.contentOffset.y < 0.1 || scrollView.contentOffset.y > autoScrollPosition - scrollView.bounds.size.height) {
+            var offset = scrollView.contentOffset
+            offset.y = autoScrollPosition
+            scrollView.setContentOffset(offset, animated: true)
+        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
