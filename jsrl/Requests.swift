@@ -36,7 +36,7 @@ class RequestMessage {
      Extract the request type.
      
      - returns: A string (REQUEST, SCREEN, etc)
- 	 */
+      */
     func getType() -> String {
         let regex = try! NSRegularExpression(pattern: "^(.*):", options: [])
         let matches = regex.matches(in: message, options: [], range: NSRange(location: 0, length: message.characters.count))
@@ -50,7 +50,7 @@ class RequestMessage {
      Extract the request text.
      
      - returns: A string containing the request text.
- 	 */
+      */
     func getText() -> String {
         let regex = try! NSRegularExpression(pattern: "^.*: (.*)$", options: [])
         let matches = regex.matches(in: message, options: [], range: NSRange(location: 0, length: message.characters.count))

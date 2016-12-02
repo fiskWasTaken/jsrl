@@ -17,9 +17,9 @@ class Chat : Resource {
      Fetch the latest chat messages in messages.xml.
      
      - properties:
-    	- callback: Callback returning an Error (nil if OK) and an array of
-     				ChatMessage responses.
- 	 */
+        - callback: Callback returning an Error (nil if OK) and an array of
+                    ChatMessage responses.
+    */
     func fetch(_ callback: @escaping (_ err: Error?, _ body: [ChatMessage])->()) {
         let url = URL(string: context.root + recvEndpoint)
         
@@ -42,8 +42,8 @@ class Chat : Resource {
      Post a message to the chat.
      
      - properties:
-     	- message: A ChatMessage.
-    	- callback: Callback returning an Error (nil if OK) and an URLResponse.
+        - message: A ChatMessage.
+        - callback: Callback returning an Error (nil if OK) and an URLResponse.
      */
     func send(_ message: ChatMessage, _ callback: @escaping (_ err: Error?, _ response: URLResponse?)->()) {
         let url = URL(string: context.root + sendEndpoint)

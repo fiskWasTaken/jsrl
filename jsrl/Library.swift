@@ -18,11 +18,11 @@ class Library {
     
     /**
      Get all tracks belonging to Station.
- 	 */
+     */
     func getTracksIn(station: Station) -> [Track] {
-    	return self.list.filter({ (track: Track) -> Bool in
-    		return station.source == "" || track.station == station.name
-    	})
+        return self.list.filter({ (track: Track) -> Bool in
+            return station.source == "" || track.station == station.name
+        })
     }
     
     /**

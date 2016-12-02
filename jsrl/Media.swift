@@ -7,10 +7,10 @@ import Foundation
 
 class Media : Resource {
     /**
- 	 Get the absolute URL for some media with percent encoding.
+      Get the absolute URL for some media with percent encoding.
      
      - parameters:
-     	- name: The track name.
+         - name: The track name.
      
      - returns: An URL object representing the resource location.
      */
@@ -23,8 +23,8 @@ class Media : Resource {
      Get a track and return a callback.
      
      - parameters:
-     	- name: The track name.
-     	- callback: Callback with err and data.
+         - name: The track name.
+         - callback: Callback with err and data.
      */
     func getData(_ name: String, _ callback: @escaping (Error?, Data?)->()) {
         var request = URLRequest(url: resolveUrl(name))

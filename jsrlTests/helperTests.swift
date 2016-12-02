@@ -68,7 +68,7 @@ class helperTests: XCTestCase {
     }
     
     /**
- 	 Ensure that track URLs are encoded correctly
+      Ensure that track URLs are encoded correctly
      */
     func testTrackURLResolve() {
         let source = "2 Mello - My Rhymes Are Nice"

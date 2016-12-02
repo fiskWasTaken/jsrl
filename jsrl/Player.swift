@@ -89,7 +89,7 @@ class Player {
      Set this track as the current track. Does not immediately play the track; use play().
      
      - parameters:
-     	- track: The track to set as the current track.
+         - track: The track to set as the current track.
      */
     func setCurrent(track: Track) {
         currentTrack = track
@@ -125,7 +125,7 @@ class Player {
     
     /**
      Play something on the AVPlayer.
- 	 */
+      */
     func play() {
         self.onPlayStart!()
         self.player = AVPlayer(playerItem: avItem)

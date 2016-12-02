@@ -10,8 +10,8 @@ class TrackLists : Resource {
      Parse a script at an URI and callback with an array of track names.
      
      - parameters:
-     	- source: The source URI (is appended to the context root).
-     	- callback: A callback returning an Error object in the first parameter
+         - source: The source URI (is appended to the context root).
+         - callback: A callback returning an Error object in the first parameter
                     (if something happened) and an array of track names.
      */
     func parseUrl(source: String, callback: @escaping (Error?, [String])->()) {
@@ -33,7 +33,7 @@ class TrackLists : Resource {
      Parse a large multi-line script to extract an array of track names.
      
      - parameters:
-     	- body: A body of text (probably some JavaScript source from jetsetradio.live).
+         - body: A body of text (probably some JavaScript source from jetsetradio.live).
      
      - returns: An array of track names.
      */

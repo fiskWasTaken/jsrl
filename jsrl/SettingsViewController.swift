@@ -13,7 +13,7 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-		chatUsername.text = defaults.string(forKey: "chatUsername")
+        chatUsername.text = defaults.string(forKey: "chatUsername")
         chatUsername.delegate = self
 
         // Do any additional setup after loading the view.

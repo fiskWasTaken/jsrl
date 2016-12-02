@@ -10,7 +10,7 @@ class JSRL {
     
     /**
      Get a Chat instance bound to this context.
-	 */
+     */
     func getChat() -> Chat {
         return Chat(self)
     }
