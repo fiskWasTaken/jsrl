@@ -7,6 +7,8 @@ a user to control playback from the lockscreen or control centre.
 * Global radio shuffle (select Classic GGs).
 * Chat room support, including ID'd user handles.
 
+Does not support the DJ request system (yet -- not sure if it is a good fit as it may result in battery drain).
+
 ## Installation
 
 ### XCode sideloading
