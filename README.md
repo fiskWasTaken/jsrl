@@ -37,9 +37,8 @@ If you want to build an .ipa without a developer license on newer versions of Xc
 
 To build the .ipa:
 
-1. Product -> Archive within Xcode.
-2. Right-click the archive in the Organizer to find where it is.
-3. `xcodebuild -exportArchive -exportFormat ipa -archivePath "name of archive.xcarchive" -exportPath ~/something.ipa`
+1. `gem install shenzhen'
+2. `ipa build -c Release -s jsrl -p jsrl.xcodeproj --verbose'
 
 ### Cydia
 

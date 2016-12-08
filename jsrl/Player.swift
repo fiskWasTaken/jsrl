@@ -1,5 +1,5 @@
 //
-//  MediaPlayer.swift
+//  Player.swift
 //  jsrl
 //
 
